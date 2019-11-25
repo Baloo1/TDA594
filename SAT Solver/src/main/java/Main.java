@@ -1,4 +1,4 @@
-import com.sun.tools.javac.comp.Todo;
+
 import org.sat4j.core.VecInt;
 import org.sat4j.pb.SolverFactory;
 import org.sat4j.reader.DimacsReader;
@@ -20,10 +20,16 @@ public class Main {
 
         try {
             boolean unsat = true;
-            IProblem problem = reader.parseInstance(args[0]);
+            IProblem problem = reader.parseInstance(Main.class.getClassLoader().getResourceAsStream("ecos_x86.dimacs"));
 
+            if (problem.isSatisfiable()) {
+                System.out.println("Satisfiable !");
+                reader.decode(problem.model(),out);
+            } else {
+                System.out.println("Unsatisfiable !");
+            }
             // TODO change condition to
-            while (problem.isSatisfiable()) {
+            /*while (problem.isSatisfiable()) {
                 unsat = false;
                 int [] model = problem.model();
                 // TODO each model needs to be used for something
@@ -32,7 +38,7 @@ public class Main {
             if (unsat) {
                 System.out.println("isUnSatisfiable");
                 // TODO handle unsatisfiable
-            }
+            }*/
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (ParseFormatException e) {
