@@ -1,12 +1,10 @@
 import com.sun.tools.javac.comp.Todo;
+import org.sat4j.core.VecInt;
 import org.sat4j.pb.SolverFactory;
 import org.sat4j.reader.DimacsReader;
 import org.sat4j.reader.ParseFormatException;
 import org.sat4j.reader.Reader;
-import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.IProblem;
-import org.sat4j.specs.ISolver;
-import org.sat4j.specs.TimeoutException;
+import org.sat4j.specs.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,6 +13,7 @@ import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) {
         ISolver solver = SolverFactory.newDefault();
+        // TODO implement own parser for feature names
         Reader reader = new DimacsReader(solver);
         PrintWriter out = new PrintWriter(System.out,true);
         // CNF filename is given on the command line
@@ -22,6 +21,8 @@ public class Main {
         try {
             boolean unsat = true;
             IProblem problem = reader.parseInstance(args[0]);
+
+            // TODO change condition to
             while (problem.isSatisfiable()) {
                 unsat = false;
                 int [] model = problem.model();
