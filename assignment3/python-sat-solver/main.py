@@ -3,7 +3,7 @@
 import pycosat
 import sys
 
-DEFAULT_PATH = "../SAT Solver/src/main/resources/ecos_x86.dimacs"
+DEFAULT_PATH = "../dimacs/ecos_x86.dimacs"
 DEAD_FEATURES_FILE = "dead-features.txt"
 
 def parse(filename):
@@ -93,7 +93,7 @@ def implication_graph(nvar, clauses, int_to_name):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("No file specified, using default (../SAT Solver/src/main/resources/ecos_x86.dimacs)")
+        print("No file specified, using default (../dimacs/ecos_x86.dimacs)")
         filepath = DEFAULT_PATH
     else:
         filepath = sys.argv[1]
