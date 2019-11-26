@@ -3,10 +3,34 @@
 import pycosat
 import sys
 
-DEFAULT_PATH = "../SAT Solver/src/main/resources/ecos_x86.dimacs"
+DEFAULT_PATH = "../dimacs/ecos_x86.dimacs"
 DEAD_FEATURES_FILE = "dead-features.txt"
 
 def parse(filename):
+    """
+    Parses the dimacs file
+
+    Takes a dimacs file and parses the number of configurations,
+    number of clauses, the clauses themselves and a maping of 
+    the configuration int to name for the feature.
+
+    Parameters
+    ----------
+    filename : string
+        Path to the file to be parsed
+
+    Returns
+    -------
+    nvar int
+        Number of configurations
+    nclause int
+        Number of clauses
+    clauses int[]
+        The clauses
+    int_to_name dict
+        A dictionary of int with matching name
+
+    """
     with open(filename, 'r') as cnf:
         lines = cnf.readlines()
         
@@ -18,7 +42,22 @@ def parse(filename):
 
         return nvar, nclause, clauses, int_to_name
 
+    """
+    Checks for dead features
 
+    Takes all clauses and checks if a feature can't ever be part of a satisfiable model
+
+    Parameters
+    ----------
+    clauses : int[]
+        List of all the clauses
+
+    Returns
+    -------
+    bool
+        Returns true if removed else it returns False
+
+    """
 def check_dead(clauses):
     removed = False
 
@@ -93,7 +132,7 @@ def implication_graph(nvar, clauses, int_to_name):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("No file specified, using default (../SAT Solver/src/main/resources/ecos_x86.dimacs)")
+        print("No file specified, using default (../dimacs/ecos_x86.dimacs)")
         filepath = DEFAULT_PATH
     else:
         filepath = sys.argv[1]
