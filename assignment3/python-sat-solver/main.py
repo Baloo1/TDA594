@@ -58,7 +58,7 @@ def check_dead(clauses):
     
     return False
 
-def implicates(var1, var2, clauses):
+def implies(var1, var2, clauses):
     satisfiability = pycosat.solve(clauses + [[-var1, var2]])
     if satisfiability == "UNKNOWN":
         print(f"The solver could not check {var1} -> {var2}")
@@ -109,7 +109,7 @@ def implication_graph(nvar, clauses, int_to_name):
         for j in range(0, nvar):
             if i != j:
                 var1, var2 = all_vars[i], all_vars[j]
-                if implicates(var1, var2, clauses):
+                if implies(var1, var2, clauses):
                     print(f" -> Implication found: ({var1},{var2})")
                     implications.append((var1, var2))
     
