@@ -42,7 +42,22 @@ def parse(filename):
 
         return nvar, nclause, clauses, int_to_name
 
+    """
+    Checks for dead features
 
+    Takes all clauses and checks if a feature can't ever be part of a satisfiable model
+
+    Parameters
+    ----------
+    clauses : int[]
+        List of all the clauses
+
+    Returns
+    -------
+    bool
+        Returns true if removed else it returns False
+
+    """
 def check_dead(clauses):
     removed = False
 
