@@ -7,6 +7,30 @@ DEFAULT_PATH = "../dimacs/ecos_x86.dimacs"
 DEAD_FEATURES_FILE = "dead-features.txt"
 
 def parse(filename):
+    """
+    Parses the dimacs file
+
+    Takes a dimacs file and parses the number of configurations,
+    number of clauses, the clauses themselves and a maping of 
+    the configuration int to name for the feature.
+
+    Parameters
+    ----------
+    filename : string
+        Path to the file to be parsed
+
+    Returns
+    -------
+    nvar int
+        Number of configurations
+    nclause int
+        Number of clauses
+    clauses int[]
+        The clauses
+    int_to_name dict
+        A dictionary of int with matching name
+
+    """
     with open(filename, 'r') as cnf:
         lines = cnf.readlines()
         
