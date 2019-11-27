@@ -64,7 +64,7 @@ def check_dead(clauses):
     for sol in pycosat.itersolve(clauses):
         for var in sol:
             if var > 0 and var in clauses[-1]:
-                print(" -> Removing feature n°{:<4} from potential dead features".format(var), end="\r")
+                # print(" -> Removing feature n°{:<4} from potential dead features".format(var), end="\r")
                 clauses[-1].remove(var)
                 removed = True
         
@@ -84,8 +84,6 @@ def implies(var1, var2, clauses):
         return True
 
 def satisfiability(clauses):
-        print("Checking satisfiability...")
-
         satisfiability = pycosat.solve(clauses)
         if satisfiability == "UNKNOWN":
             print(" -> PicoSAT could not determined this instance's satisfiability")
@@ -98,38 +96,28 @@ def satisfiability(clauses):
         else:
             print(" -> This instance is satisfiable")
 
+# TODO: remove int_to_name from args ?
 def dead_features(clauses, int_to_name):
-    print("Finding dead features...")
 
     all_found = False
     extended = clauses + [list(int_to_name.keys())]
     while not all_found:
         all_found = not check_dead(extended)
     
-    print()
-    print(f" -> There are {len(extended[-1])} dead features")
-    
-    with open(DEAD_FEATURES_FILE, 'w') as dead_features_f:
-        dead_features_f.write("\n".join([int_to_name[c] for c in extended[-1]]))
-    
-    print(f" -> You can find the list of dead features in {DEAD_FEATURES_FILE}")
+    return extended[-1]
 
 def implication_graph(nvar, clauses, int_to_name):
-    print("Generating implication graph")
-
     implications = []
     all_vars = list(int_to_name.keys())
 
     for i in range(0, nvar):
-        for j in range(0, nvar):
-            if i != j:
-                var1, var2 = all_vars[i], all_vars[j]
-                if implies(var1, var2, clauses):
-                    print(f" -> Implication found: ({var1},{var2})")
-                    implications.append((var1, var2))
-    
-    print(implications)
+        print(f"Checking implications for feature n°{i}", end="\r")
+        var = all_vars[i]
+        dead = dead_features(clauses + [[-var]], int_to_name)
+        implications.extend([(int_to_name[d], int_to_name[var]) for d in dead])
 
+    return implications
+    
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("No file specified, using default (../dimacs/ecos_x86.dimacs)")
@@ -147,13 +135,24 @@ if __name__ == "__main__":
         print("This is probably due to the file being incorrectly formatted")
     else:
         # Check for solvability
+        print("Checking satisfiability...")
         satisfiability(clauses)
 
         # Search for dead features
-        dead_features(clauses, int_to_name)
-        
+        print("Finding dead features...")
+
+        dead = dead_features(clauses, int_to_name)
+
+        with open(DEAD_FEATURES_FILE, 'w') as dead_features_f:
+            dead_features_f.write("\n".join([int_to_name[c] for c in dead]))
+    
+        print(f" -> You can find the list of dead features in {DEAD_FEATURES_FILE}")
+
         # Create implication graph
-        implication_graph(nvar, clauses, int_to_name)
+        print("Generating implication graph")
+
+        implications = implication_graph(nvar, clauses, int_to_name)
+        print(implications)
 
         
 
