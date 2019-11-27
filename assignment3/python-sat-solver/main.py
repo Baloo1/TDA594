@@ -97,7 +97,6 @@ def satisfiability(clauses):
     else:
         print(" -> This instance is satisfiable")
 
-# TODO: remove int_to_name from args ?
 def dead_features(clauses, int_to_name):
 
     all_found = False
@@ -122,7 +121,7 @@ def implication_graph(nvar, clauses, int_to_name, dead_features={}):
                 implications.append((var1, var2))
     
     with open(IMPLICATION_GRAPH_FILE, 'w') as implications_f:
-        implications_f.write("\n".join([f"{int_to_name[var1]} -> {int_to_name[var2]}" for implication in implications]))
+        implications_f.write("\n".join([f"{int_to_name[x]} -> {int_to_name[y]}" for x, y in implications]))
     
     print(f" -> You can find the implication graph in {IMPLICATION_GRAPH_FILE}")
     return implications
