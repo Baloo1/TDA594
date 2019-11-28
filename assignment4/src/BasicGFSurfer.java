@@ -264,7 +264,7 @@ public class BasicGFSurfer extends AdvancedRobot {
 
         return _surfStats[index];
     }
-
+    //#if WaveSurfing
     public void doSurfing() {
         EnemyWave surfWave = getClosestSurfableWave();
 
@@ -282,6 +282,7 @@ public class BasicGFSurfer extends AdvancedRobot {
 
         setBackAsFront(this, goAngle);
     }
+    //#endif
 
     // This can be defined as an inner class if you want.
     class EnemyWave {
