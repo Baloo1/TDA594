@@ -20,6 +20,15 @@
 				<feature name="NoneTargeting"/>
 			</or>
 			<feature name="Storage"/>
+			<feature name="WallSmoothing"/>
 		</and>
 	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>WaveSurfing</var>
+				<var>WallSmoothing</var>
+			</imp>
+		</rule>
+	</constraints>
 </featureModel>

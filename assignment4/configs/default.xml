@@ -8,4 +8,5 @@
 	<feature name="GuessFactor"/>
 	<feature name="NoneTargeting"/>
 	<feature name="Storage"/>
+	<feature automatic="selected" name="WallSmoothing"/>
 </configuration>
