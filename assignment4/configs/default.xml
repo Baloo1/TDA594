@@ -6,7 +6,7 @@
 	<feature name="Random"/>
 	<feature automatic="selected" name="Targeting"/>
 	<feature name="GuessFactor"/>
-	<feature name="NoneTargeting"/>
-	<feature name="Storage"/>
+	<feature manual="selected" name="NoneTargeting"/>
+	<feature manual="selected" name="Storage"/>
 	<feature automatic="selected" name="WallSmoothing"/>
 </configuration>
