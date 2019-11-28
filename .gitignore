@@ -274,8 +274,4 @@ fabric.properties
 
 **/.idea
 
-### VSCode ###
-# Settings
-.vscode/*
-
 # End of https://www.gitignore.io/api/intellij
