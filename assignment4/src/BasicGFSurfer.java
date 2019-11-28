@@ -293,7 +293,7 @@ public class BasicGFSurfer extends AdvancedRobot {
 
         public EnemyWave() { }
     }
-
+    //#if WallSmoothing
     // CREDIT: Iterative WallSmoothing by Kawigi
     //   - return absolute angle to move at after account for WallSmoothing
     // robowiki.net?WallSmoothing
@@ -303,6 +303,7 @@ public class BasicGFSurfer extends AdvancedRobot {
         }
         return angle;
     }
+    //#endif
 
     // CREDIT: from CassiusClay, by PEZ
     //   - returns point length away from sourceLocation, at angle
