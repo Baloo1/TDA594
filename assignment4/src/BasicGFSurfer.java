@@ -1,4 +1,3 @@
-package wiki;
 
 import robocode.*;
 import robocode.util.Utils;
