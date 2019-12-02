@@ -15,10 +15,10 @@
 				<feature name="WaveSurfing"/>
 				<feature name="Random"/>
 			</or>
-			<or abstract="true" mandatory="true" name="Targeting">
+			<alt abstract="true" mandatory="true" name="Targeting">
 				<feature name="GuessFactor"/>
 				<feature name="NoneTargeting"/>
-			</or>
+			</alt>
 			<feature name="Storage"/>
 			<feature name="WallSmoothing"/>
 		</and>

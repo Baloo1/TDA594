@@ -5,8 +5,8 @@
 	<feature manual="selected" name="WaveSurfing"/>
 	<feature name="Random"/>
 	<feature automatic="selected" name="Targeting"/>
-	<feature name="GuessFactor"/>
-	<feature manual="selected" name="NoneTargeting"/>
+	<feature manual="selected" name="GuessFactor"/>
+	<feature automatic="unselected" name="NoneTargeting"/>
 	<feature manual="selected" name="Storage"/>
-	<feature automatic="selected" name="WallSmoothing"/>
+	<feature automatic="selected" manual="selected" name="WallSmoothing"/>
 </configuration>
