@@ -2,10 +2,10 @@
 <configuration>
 	<feature automatic="selected" name="RoboCode"/>
 	<feature automatic="selected" name="Movement"/>
-	<feature manual="selected" name="WaveSurfing"/>
-	<feature name="Random"/>
+	<feature automatic="unselected" name="WaveSurfing"/>
+	<feature manual="selected" name="RandomFluidOrbit"/>
 	<feature automatic="selected" name="Targeting"/>
-	<feature name="GuessFactor"/>
-	<feature name="NoneTargeting"/>
-	<feature name="Storage"/>
+	<feature automatic="unselected" name="GuessFactor"/>
+	<feature manual="selected" name="NoneTargeting"/>
+	<feature name="Embodiment"/>
 </configuration>
