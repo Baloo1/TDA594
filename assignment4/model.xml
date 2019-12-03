@@ -11,15 +11,15 @@
 	</properties>
 	<struct>
 		<and abstract="true" mandatory="true" name="RoboCode">
-			<or abstract="true" mandatory="true" name="Movement">
+			<alt abstract="true" mandatory="true" name="Movement">
 				<feature name="WaveSurfing"/>
-				<feature name="Random"/>
-			</or>
+				<feature name="RandomFluidOrbit"/>
+			</alt>
 			<alt abstract="true" mandatory="true" name="Targeting">
 				<feature name="GuessFactor"/>
 				<feature name="NoneTargeting"/>
 			</alt>
-			<feature name="Storage"/>
+			<feature name="Embodiment"/>
 		</and>
 	</struct>
 </featureModel>
