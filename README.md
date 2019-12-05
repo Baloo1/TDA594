@@ -19,3 +19,11 @@ chmod +x main.py
 ```
 
 You can also call main.py without arguments, in which case it will use *ecos_x86.dimacs*. The program outputs 2 files, *output.txt* (list of dead features) and *implications.txt* (implication graph).
+
+## Assignment 4 
+
+Antenna, configruations and robot variants
+
+## Assignment 5 
+
+Our framework for robot features
