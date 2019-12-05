@@ -16,4 +16,11 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  <dependency>
+    <groupId>net.sf.robocode</groupId>
+    <artifactId>robocode.api</artifactId>
+    <version>1.9.2.1</version>
+  </dependency>
+</dependencies>
 </project>
