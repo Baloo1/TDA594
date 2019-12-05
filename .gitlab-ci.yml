@@ -6,10 +6,10 @@ stages:
 
 build: 
     stage: build 
-    tags: - docker 
-    script: - mvn compile
+    tags: docker 
+    script: mvn compile
 
 test: 
     stage: test 
-    tags: - docker 
-    script: - mvn test
+    tags: docker 
+    script: mvn test
