@@ -544,7 +544,7 @@ class GFTMovement {
 //@}
 //#endif
 
-
+ //TODO REMOVE THIS BELOW WHEN YOU HAVE COPIED INTO OWN CLASSES
 //#if LinearTargeting
 //@// CODE FOR LINEAR TARGETING TAKEN FROM WIKI
 //@
@@ -590,69 +590,8 @@ class GFTMovement {
 //@*/
 //#endif
 
-//#if Stop&Go
-//@
-//@//CODE FOR STOP&GO TAKEN FROM BOT WAYLANDER
-//@public class Waylander extends AdvancedRobot
-//@{
-//@//movement \/  \/
-//@double v1, v2, offset = Math.PI/2 + 1 - eDistance/600;
-//@
-//@while(!field.
-//@contains(project(myLocation, v2 = absbearing + direction*(offset -= 0.02), 160))
-//@// contains(getX() + 160 * Math.sin(v2 = absbearing + direction * (offset -= .02)), getY() + 160 * Math.cos(v2))
-//@);
-//@
-//@
-//@if((flat && !rammer && 
-//@//Raiko's flattener
-//@// (Math.random() > Math.pow(v1 = 0.5952 * bulletVelocity /eDistance, v1))
-//@
-//@//a sbf style flattener - seems like it's easy to hit for FloodMini
-//@// getTime() >= lastTurnTime + eDistance/bulletVelocity*random
-//@
-//@//My flattener 
-//@Math.random() <  0.6*Math.sqrt(bulletVelocity/eDistance) - 0.04
-//@
-//@//Thorn's flattener - FloodGrapher shows it's flatter but it gives worse results!??!?
-//@// Math.random() < 0.65*Math.pow(eDistance/bulletVelocity, -0.65)
-//@
-//@// a fairly good linear approximation of Raiko and Thorn
-//@//  Math.random() < 1.1*bulletVelocity/eDistance + 0.03
-//@
-//@//Aristocles' flattener - light on codesize but easy to hit when the distance isn't 300-400
-//@// Math.random() <  2.374873835*bulletVelocity/eDistance
-//@
-//@) || 
-//@ offset < Math.PI/4 ) {
-//@   direction = -direction;
-//@   // lastTurnTime = getTime();
-//@   // random = Math.random();
-//@}
-//@setTurnRightRadians(Math.tan(v2 -= headingRadians));
-//@
-//@double deltaE = (lastEnemyEnergy - (lastEnemyEnergy = e.getEnergy()));
-//@
-//@if((0 < deltaE && deltaE < 3.001) || flat || rammer){
-//@   setAhead((37 + ((int)(deltaE - 0.50001))*11) *Math.signum(Math.cos(v2)));
-//@} 
-//@
-//@public void onHitByBullet(HitByBulletEvent e){
-//@         
-//@         lastEnemyEnergy += 20 - (bulletVelocity = e.getVelocity());	
-//@        
-//@         // if(hits++ > 6 && getRoundNum() < 5 )
-//@            // flat = true;
-//@      }
-//@   
-//@       public void onDeath(DeathEvent e){
-//@       
-//@         if(getRoundNum() < 3)
-//@            flat = true;
-//@       }     
-//@      }
-//#endif
 
+/**
 package jk;
 import robocode.*;
 import robocode.util.*;
@@ -660,7 +599,7 @@ import java.awt.geom.*;
 import java.util.*;
 import java.awt.*;
 
-/** WAYLANDER STOP AND GO CLASS
+  WAYLANDER STOP AND GO CLASS
  public class Waylander extends AdvancedRobot
 {
 
