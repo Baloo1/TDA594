@@ -543,3 +543,112 @@ class GFTMovement {
 //@	}
 //@}
 //#endif
+
+
+//#if LinearTargeting
+//@// CODE FOR LINEAR TARGETING TAKEN FROM WIKI
+//@
+//@//Add import robocode.util.* for Utils and import java.awt.geom.* for Point2D.
+//@//This code goes in your onScannedRobot() event handler.
+//@
+//@double bulletPower = Math.min(3.0,getEnergy());
+//@double myX = getX();
+//@double myY = getY();
+//@double absoluteBearing = getHeadingRadians() + e.getBearingRadians();
+//@double enemyX = getX() + e.getDistance() * Math.sin(absoluteBearing);
+//@double enemyY = getY() + e.getDistance() * Math.cos(absoluteBearing);
+//@double enemyHeading = e.getHeadingRadians();
+//@double enemyVelocity = e.getVelocity();
+//@
+//@
+//@double deltaTime = 0;
+//@double battleFieldHeight = getBattleFieldHeight(), 
+//@    battleFieldWidth = getBattleFieldWidth();
+//@double predictedX = enemyX, predictedY = enemyY;
+//@while((++deltaTime) * (20.0 - 3.0 * bulletPower) < 
+//@   Point2D.Double.distance(myX, myY, predictedX, predictedY)){		
+//@	predictedX += Math.sin(enemyHeading) * enemyVelocity;	
+//@	predictedY += Math.cos(enemyHeading) * enemyVelocity;
+//@	if(	predictedX < 18.0 
+//@		|| predictedY < 18.0
+//@		|| predictedX > battleFieldWidth - 18.0
+//@		|| predictedY > battleFieldHeight - 18.0){
+//@		predictedX = Math.min(Math.max(18.0, predictedX), 
+//@                 battleFieldWidth - 18.0);	
+//@		predictedY = Math.min(Math.max(18.0, predictedY), 
+//@                 battleFieldHeight - 18.0);
+//@		break;
+//@	}
+//@}
+//@double theta = Utils.normalAbsoluteAngle(Math.atan2(
+//@ predictedX - getX(), predictedY - getY()));
+//@
+//@setTurnRadarRightRadians(
+//@ Utils.normalRelativeAngle(absoluteBearing - getRadarHeadingRadians()));
+//@setTurnGunRightRadians(Utils.normalRelativeAngle(theta - getGunHeadingRadians()));
+//@fire(bulletPower);
+//@*/
+//#endif
+
+//#if Stop&Go
+//@
+//@//CODE FOR STOP&GO TAKEN FROM BOT WAYLANDER
+//@public class Waylander extends AdvancedRobot
+//@{
+//@//movement \/  \/
+//@double v1, v2, offset = Math.PI/2 + 1 - eDistance/600;
+//@
+//@while(!field.
+//@contains(project(myLocation, v2 = absbearing + direction*(offset -= 0.02), 160))
+//@// contains(getX() + 160 * Math.sin(v2 = absbearing + direction * (offset -= .02)), getY() + 160 * Math.cos(v2))
+//@);
+//@
+//@
+//@if((flat && !rammer && 
+//@//Raiko's flattener
+//@// (Math.random() > Math.pow(v1 = 0.5952 * bulletVelocity /eDistance, v1))
+//@
+//@//a sbf style flattener - seems like it's easy to hit for FloodMini
+//@// getTime() >= lastTurnTime + eDistance/bulletVelocity*random
+//@
+//@//My flattener 
+//@Math.random() <  0.6*Math.sqrt(bulletVelocity/eDistance) - 0.04
+//@
+//@//Thorn's flattener - FloodGrapher shows it's flatter but it gives worse results!??!?
+//@// Math.random() < 0.65*Math.pow(eDistance/bulletVelocity, -0.65)
+//@
+//@// a fairly good linear approximation of Raiko and Thorn
+//@//  Math.random() < 1.1*bulletVelocity/eDistance + 0.03
+//@
+//@//Aristocles' flattener - light on codesize but easy to hit when the distance isn't 300-400
+//@// Math.random() <  2.374873835*bulletVelocity/eDistance
+//@
+//@) || 
+//@ offset < Math.PI/4 ) {
+//@   direction = -direction;
+//@   // lastTurnTime = getTime();
+//@   // random = Math.random();
+//@}
+//@setTurnRightRadians(Math.tan(v2 -= headingRadians));
+//@
+//@double deltaE = (lastEnemyEnergy - (lastEnemyEnergy = e.getEnergy()));
+//@
+//@if((0 < deltaE && deltaE < 3.001) || flat || rammer){
+//@   setAhead((37 + ((int)(deltaE - 0.50001))*11) *Math.signum(Math.cos(v2)));
+//@} 
+//@
+//@public void onHitByBullet(HitByBulletEvent e){
+//@         
+//@         lastEnemyEnergy += 20 - (bulletVelocity = e.getVelocity());	
+//@        
+//@         // if(hits++ > 6 && getRoundNum() < 5 )
+//@            // flat = true;
+//@      }
+//@   
+//@       public void onDeath(DeathEvent e){
+//@       
+//@         if(getRoundNum() < 3)
+//@            flat = true;
+//@       }     
+//@      }
+//#endif
