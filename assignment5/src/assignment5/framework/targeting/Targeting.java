@@ -11,8 +11,15 @@ public abstract class Targeting implements IEvents {
 		this.robot = robot;		
 	}
 	
-	public void onScannedRobot(ScannedRobotEvent e) { } 
-	public void onHitByBullet(HitByBulletEvent e) { } 
-	public void onDeath(DeathEvent e) { }
-	public void onBulletHit(BulletHitEvent e) { } 
+	@Override
+	public abstract void onScannedRobot(ScannedRobotEvent e);
+
+	@Override
+	public abstract void onHitByBullet(HitByBulletEvent e);
+
+	@Override
+	public abstract void onDeath(DeathEvent e);
+
+	@Override
+	public abstract void onBulletHit(BulletHitEvent e);
 }
