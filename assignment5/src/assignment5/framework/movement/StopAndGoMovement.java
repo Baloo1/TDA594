@@ -64,7 +64,8 @@ public class StopAndGoMovement extends AbstractMovement {
 
 	}
 
-	Point2D.Double project(Point2D.Double location, double angle, double distance) {
+	/* default */
+	private Point2D.Double project(Point2D.Double location, double angle, double distance) {
 		return new Point2D.Double(location.x + distance * Math.sin(angle), location.y + distance * Math.cos(angle));
 	}
 
