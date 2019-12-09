@@ -7,7 +7,7 @@ import java.awt.geom.*; // for Point2D's
 import java.util.ArrayList;
 
 
-public class WaveSurfing extends Movement {
+public class WaveSurfingMovement extends Movement {
 	public static int BINS = 47;
 	public static double _surfStats[] = new double[BINS]; // we'll use 47 bins
 	public Point2D.Double _myLocation; // our bot's location
@@ -21,7 +21,7 @@ public class WaveSurfing extends Movement {
 	public static Rectangle2D.Double _fieldRect = new java.awt.geom.Rectangle2D.Double(18, 18, 764, 564);
 	public static double WALL_STICK = 160;
 	
-	public WaveSurfing(AdvancedRobot robot) {
+	public WaveSurfingMovement(AdvancedRobot robot) {
 		super(robot);
 		
 		_enemyWaves = new ArrayList<EnemyWave>();

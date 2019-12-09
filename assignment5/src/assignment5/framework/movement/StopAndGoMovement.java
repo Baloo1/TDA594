@@ -3,7 +3,7 @@ package assignment5.framework.movement;
 import robocode.*; // for Double and Integer objects
 import java.awt.geom.*; // for Point2D's
 
-public class StopAndGo extends Movement {
+public class StopAndGoMovement extends Movement {
 
 	static double direction = 1;
 	final static double angleScale = 24;
@@ -15,7 +15,7 @@ public class StopAndGo extends Movement {
 	static StringBuilder data = new StringBuilder();
 	static double bulletVelocity;
 
-	public StopAndGo(AdvancedRobot robot) {
+	public StopAndGoMovement(AdvancedRobot robot) {
 		super(robot);
 	}
 
