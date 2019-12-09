@@ -7,9 +7,8 @@ import java.awt.geom.*;
 import assignment5.framework.targeting.Targeting;
 
 public class LinearTargeting extends Targeting {
-	// CODE FOR LINEAR TARGETING TAKEN FROM WIKI
-	private AdvancedRobot robot;
 	
+	// CODE FOR LINEAR TARGETING TAKEN FROM WIKI	
 	public LinearTargeting(AdvancedRobot robot) {
 		super(robot);
 	}
@@ -26,9 +25,10 @@ public class LinearTargeting extends Targeting {
 		double enemyVelocity = e.getVelocity();
 		double deltaTime = 0;
 		
-		double battleFieldHeight = robot.getBattleFieldHeight(), 
+		final double battleFieldHeight = robot.getBattleFieldHeight(), 
 				battleFieldWidth = robot.getBattleFieldWidth();
-		double predictedX = enemyX, predictedY = enemyY;
+		double predictedX = enemyX;
+		double predictedY = enemyY;
 		while((++deltaTime) * (20.0 - 3.0 * bulletPower) < 
 				Point2D.Double.distance(myX, myY, predictedX, predictedY)){		
 			predictedX += Math.sin(enemyHeading) * enemyVelocity;	
@@ -50,6 +50,7 @@ public class LinearTargeting extends Targeting {
 	Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
 	robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
 	robot.fire(bulletPower);
+	System.out.println(theta);
 		
 	}
 
