@@ -1,9 +1,5 @@
 image: maven:latest
 
-default:
-    before_script:
-        - cd assignment5/
-
 stages:
     - build
     - test
@@ -12,7 +8,8 @@ build:
   stage: build
   tags:
     - docker
-
+  before_script:
+    - cd assignment5/
   script:
     - mvn compile
 
@@ -20,6 +17,8 @@ test:
   stage: test
   tags:
     - docker
+  before_script:
+    - cd assignment5/
   script:
     - mvn test
 
