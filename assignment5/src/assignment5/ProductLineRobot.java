@@ -12,7 +12,7 @@ public class ProductLineRobot extends AdvancedRobot implements IEvents {
 	@Override
 	public void run() {
 		
-		movement = new WaveSurfing(this);
+		movement = new WaveSurfingMovement(this);
 		targeting = new GFTargeting(this);
 	
 		setAdjustGunForRobotTurn(true);
