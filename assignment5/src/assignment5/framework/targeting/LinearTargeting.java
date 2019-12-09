@@ -5,15 +5,13 @@ import robocode.util.*;
 import java.awt.geom.*;
 
 public class LinearTargeting extends AbstractTargeting {
-	
-	// CODE FOR LINEAR TARGETING TAKEN FROM WIKI	
 	public LinearTargeting(AdvancedRobot robot) {
 		super(robot);
 	}
-	
+
 	@Override
 	public void onScannedRobot(ScannedRobotEvent e) {
-		double bulletPower = Math.min(3.0,robot.getEnergy());
+		double bulletPower = Math.min(3.0, robot.getEnergy());
 		double myX = robot.getX();
 		double myY = robot.getY();
 		double absoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
@@ -22,34 +20,26 @@ public class LinearTargeting extends AbstractTargeting {
 		double enemyHeading = e.getHeadingRadians();
 		double enemyVelocity = e.getVelocity();
 		double deltaTime = 0;
-		
-		final double battleFieldHeight = robot.getBattleFieldHeight(), 
-				battleFieldWidth = robot.getBattleFieldWidth();
+
+		final double battleFieldHeight = robot.getBattleFieldHeight(), battleFieldWidth = robot.getBattleFieldWidth();
 		double predictedX = enemyX;
 		double predictedY = enemyY;
-		while((++deltaTime) * (20.0 - 3.0 * bulletPower) < 
-				Point2D.Double.distance(myX, myY, predictedX, predictedY)){		
-			predictedX += Math.sin(enemyHeading) * enemyVelocity;	
+		while ((++deltaTime) * (20.0 - 3.0 * bulletPower) < Point2D.Double.distance(myX, myY, predictedX, predictedY)) {
+			predictedX += Math.sin(enemyHeading) * enemyVelocity;
 			predictedY += Math.cos(enemyHeading) * enemyVelocity;
-			if(	predictedX < 18.0 
-			|| predictedY < 18.0
-			|| predictedX > battleFieldWidth - 18.0
-			|| predictedY > battleFieldHeight - 18.0){
-			predictedX = Math.min(Math.max(18.0, predictedX), 
-	                 battleFieldWidth - 18.0);	
-			predictedY = Math.min(Math.max(18.0, predictedY), 
-	                 battleFieldHeight - 18.0);
-			break;
+			if (predictedX < 18.0 || predictedY < 18.0 || predictedX > battleFieldWidth - 18.0
+					|| predictedY > battleFieldHeight - 18.0) {
+				predictedX = Math.min(Math.max(18.0, predictedX), battleFieldWidth - 18.0);
+				predictedY = Math.min(Math.max(18.0, predictedY), battleFieldHeight - 18.0);
+				break;
+			}
 		}
-	}
-	double theta = Utils.normalAbsoluteAngle(Math.atan2(
-	predictedX - robot.getX(), predictedY - robot.getY()));
-	robot.setTurnRadarRightRadians(
-	Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
-	robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
-	robot.fire(bulletPower);
-	System.out.println(theta);
-		
+		double theta = Utils.normalAbsoluteAngle(Math.atan2(predictedX - robot.getX(), predictedY - robot.getY()));
+		robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
+		robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
+		robot.fire(bulletPower);
+		System.out.println(theta);
+
 	}
 
 }
