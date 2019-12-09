@@ -7,7 +7,7 @@ import java.awt.geom.*; // for Point2D's
 import java.util.ArrayList;
 
 
-public class WaveSurfingMovement extends Movement {
+public class WaveSurfingMovement extends AbstractMovement {
 	public static int BINS = 47;
 	public static double _surfStats[] = new double[BINS]; // we'll use 47 bins
 	public Point2D.Double _myLocation; // our bot's location
