@@ -1,9 +1,9 @@
 package assignment5.framework.movement;
 
-import assignment5.framework.IEventsTarget;
+import assignment5.framework.targeting.IEventsTarget;
 import robocode.*;
 
-public abstract class AbstractMovement implements IEventsTarget {
+public abstract class AbstractMovement implements IEventsMovement {
 	
 	protected AdvancedRobot robot;
 	
