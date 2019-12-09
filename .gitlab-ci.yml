@@ -1,7 +1,7 @@
 image: maven:latest
 
 before_script:
-    - cd /assignment5
+    - cd ./assignment5
 
 stages:
     - build
