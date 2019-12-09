@@ -2,12 +2,11 @@ package assignment5;
 
 import robocode.*;
 import assignment5.framework.targeting.*;
-import assignment5.framework.IEvents;
 import assignment5.framework.movement.*;
 
-public class ProductLineRobot extends AdvancedRobot implements IEvents {
-	private Movement movement;
-	private Targeting targeting;
+public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IEventsMovement {
+	private AbstractMovement movement;
+	private AbstractTargeting targeting;
 	
 	@Override
 	public void run() {
@@ -33,18 +32,15 @@ public class ProductLineRobot extends AdvancedRobot implements IEvents {
 	@Override
 	public void onHitByBullet(HitByBulletEvent e) {
 		movement.onHitByBullet(e);
-		targeting.onHitByBullet(e);
 	}
 
 	@Override
 	public void onDeath(DeathEvent e) {
 		movement.onDeath(e);
-		targeting.onDeath(e);
 	}
 	
 	@Override
 	public void onBulletHit(BulletHitEvent e) {
 		movement.onBulletHit(e);
-		targeting.onBulletHit(e);
 	}
 }
