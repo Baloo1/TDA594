@@ -5,17 +5,18 @@ import robocode.util.Utils;
 
 import java.awt.geom.*; // for Point2D's
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class WaveSurfingMovement extends AbstractMovement {
-	public static int BINS = 47;
-	public static double _surfStats[] = new double[BINS]; // we'll use 47 bins
-	public Point2D.Double _myLocation; // our bot's location
-	public Point2D.Double _enemyLocation; // enemy bot's location
+	public static final int BINS = 47;
+	public static double surfStats[] = new double[BINS]; // we'll use 47 bins
+	public Point2D.Double myLocation; // our bot's location
+	public Point2D.Double enemyLocation; // enemy bot's location
 
-	public ArrayList<EnemyWave> _enemyWaves;
-	public ArrayList<Integer> _surfDirections;
-	public ArrayList<Double> _surfAbsBearings;
+	public List<EnemyWave> enemyWaves;
+	public List<Integer> surfDirections;
+	public List<Double> surfAbsBearings;
 	
 	public static double _oppEnergy = 100.0;
 	public static Rectangle2D.Double _fieldRect = new java.awt.geom.Rectangle2D.Double(18, 18, 764, 564);
@@ -24,43 +25,43 @@ public class WaveSurfingMovement extends AbstractMovement {
 	public WaveSurfingMovement(AdvancedRobot robot) {
 		super(robot);
 		
-		_enemyWaves = new ArrayList<EnemyWave>();
-		_surfDirections = new ArrayList<Integer>();
-		_surfAbsBearings = new ArrayList<Double>();
+		enemyWaves = new ArrayList<EnemyWave>();
+		surfDirections = new ArrayList<Integer>();
+		surfAbsBearings = new ArrayList<Double>();
 	}
 	
 	@Override
 	public void onScannedRobot(ScannedRobotEvent e) {
-        _myLocation = new Point2D.Double(robot.getX(), robot.getY());
+        myLocation = new Point2D.Double(robot.getX(), robot.getY());
 
         double lateralVelocity = robot.getVelocity()*Math.sin(e.getBearingRadians());
         double absBearing = e.getBearingRadians() + robot.getHeadingRadians();
 
         robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absBearing - robot.getRadarHeadingRadians()) * 2);
 
-        _surfDirections.add(0, (lateralVelocity >= 0) ? 1 : -1);
-        _surfAbsBearings.add(0, absBearing + Math.PI);
+        surfDirections.add(0, (lateralVelocity >= 0) ? 1 : -1);
+        surfAbsBearings.add(0, absBearing + Math.PI);
 
 
         double bulletPower = _oppEnergy - e.getEnergy();
         if (bulletPower < 3.01 && bulletPower > 0.09
-            && _surfDirections.size() > 2) {
+            && surfDirections.size() > 2) {
             EnemyWave ew = new EnemyWave();
             ew.fireTime = robot.getTime() - 1;
             ew.bulletVelocity = bulletVelocity(bulletPower);
             ew.distanceTraveled = bulletVelocity(bulletPower);
-            ew.direction = ((Integer)_surfDirections.get(2)).intValue();
-            ew.directAngle = ((Double)_surfAbsBearings.get(2)).doubleValue();
-            ew.fireLocation = (Point2D.Double)_enemyLocation.clone(); // last tick
+            ew.direction = ((Integer)surfDirections.get(2)).intValue();
+            ew.directAngle = ((Double)surfAbsBearings.get(2)).doubleValue();
+            ew.fireLocation = (Point2D.Double)enemyLocation.clone(); // last tick
 
-            _enemyWaves.add(ew);
+            enemyWaves.add(ew);
         }
 
         _oppEnergy = e.getEnergy();
 
         // update after EnemyWave detection, because that needs the previous
         // enemy location as the source of the wave
-        _enemyLocation = project(_myLocation, absBearing, e.getDistance());
+        enemyLocation = project(myLocation, absBearing, e.getDistance());
 
         updateWaves();
         doSurfing();
@@ -68,13 +69,13 @@ public class WaveSurfingMovement extends AbstractMovement {
 	}
 	
 	private void updateWaves() {
-        for (int x = 0; x < _enemyWaves.size(); x++) {
-            EnemyWave ew = (EnemyWave)_enemyWaves.get(x);
+        for (int x = 0; x < enemyWaves.size(); x++) {
+            EnemyWave ew = (EnemyWave)enemyWaves.get(x);
 
             ew.distanceTraveled = (robot.getTime() - ew.fireTime) * ew.bulletVelocity;
             if (ew.distanceTraveled >
-                _myLocation.distance(ew.fireLocation) + 50) {
-                _enemyWaves.remove(x);
+                myLocation.distance(ew.fireLocation) + 50) {
+                enemyWaves.remove(x);
                 x--;
             }
         }
@@ -84,9 +85,9 @@ public class WaveSurfingMovement extends AbstractMovement {
         double closestDistance = 50000; // I juse use some very big number here
         EnemyWave surfWave = null;
 
-        for (int x = 0; x < _enemyWaves.size(); x++) {
-            EnemyWave ew = (EnemyWave)_enemyWaves.get(x);
-            double distance = _myLocation.distance(ew.fireLocation)
+        for (int x = 0; x < enemyWaves.size(); x++) {
+            EnemyWave ew = (EnemyWave)enemyWaves.get(x);
+            double distance = myLocation.distance(ew.fireLocation)
                 - ew.distanceTraveled;
 
             if (distance > ew.bulletVelocity && distance < closestDistance) {
@@ -120,7 +121,7 @@ public class WaveSurfingMovement extends AbstractMovement {
             // for the spot bin that we were hit on, add 1;
             // for the bins next to it, add 1 / 2;
             // the next one, add 1 / 5; and so on...
-            _surfStats[x] += 1.0 / (Math.pow(index - x, 2) + 1);
+            surfStats[x] += 1.0 / (Math.pow(index - x, 2) + 1);
         }
     }
 
@@ -128,17 +129,17 @@ public class WaveSurfingMovement extends AbstractMovement {
     public void onHitByBullet(HitByBulletEvent e) {
         // If the _enemyWaves collection is empty, we must have missed the
         // detection of this wave somehow.
-        if (!_enemyWaves.isEmpty()) {
+        if (!enemyWaves.isEmpty()) {
             Point2D.Double hitBulletLocation = new Point2D.Double(
                 e.getBullet().getX(), e.getBullet().getY());
             EnemyWave hitWave = null;
 
             // look through the EnemyWaves, and find one that could've hit us.
-            for (int x = 0; x < _enemyWaves.size(); x++) {
-                EnemyWave ew = (EnemyWave)_enemyWaves.get(x);
+            for (int x = 0; x < enemyWaves.size(); x++) {
+                EnemyWave ew = (EnemyWave)enemyWaves.get(x);
 
                 if (Math.abs(ew.distanceTraveled -
-                    _myLocation.distance(ew.fireLocation)) < 50
+                    myLocation.distance(ew.fireLocation)) < 50
                     && Math.abs(bulletVelocity(e.getBullet().getPower()) 
                         - ew.bulletVelocity) < 0.001) {
                     hitWave = ew;
@@ -150,7 +151,7 @@ public class WaveSurfingMovement extends AbstractMovement {
                 logHit(hitWave, hitBulletLocation);
 
                 // We can remove this wave now, of course.
-                _enemyWaves.remove(_enemyWaves.lastIndexOf(hitWave));
+                enemyWaves.remove(enemyWaves.lastIndexOf(hitWave));
             }
         }
     }
@@ -158,7 +159,7 @@ public class WaveSurfingMovement extends AbstractMovement {
     // CREDIT: mini sized predictor from Apollon, by rozu
     // http://robowiki.net?Apollon
     private Point2D.Double predictPosition(EnemyWave surfWave, int direction) {
-    	Point2D.Double predictedPosition = (Point2D.Double)_myLocation.clone();
+    	Point2D.Double predictedPosition = (Point2D.Double)myLocation.clone();
     	double predictedVelocity = robot.getVelocity();
     	double predictedHeading = robot.getHeadingRadians();
     	double maxTurning, moveAngle, moveDir;
@@ -210,7 +211,7 @@ public class WaveSurfingMovement extends AbstractMovement {
         int index = getFactorIndex(surfWave,
             predictPosition(surfWave, direction));
 
-        return _surfStats[index];
+        return surfStats[index];
     }
    
     private void doSurfing() {
@@ -221,11 +222,11 @@ public class WaveSurfingMovement extends AbstractMovement {
         double dangerLeft = checkDanger(surfWave, -1);
         double dangerRight = checkDanger(surfWave, 1);
 
-        double goAngle = absoluteBearing(surfWave.fireLocation, _myLocation);
+        double goAngle = absoluteBearing(surfWave.fireLocation, myLocation);
         if (dangerLeft < dangerRight) {
-            goAngle = wallSmoothing(_myLocation, goAngle - (Math.PI/2), -1);
+            goAngle = wallSmoothing(myLocation, goAngle - (Math.PI/2), -1);
         } else {
-            goAngle = wallSmoothing(_myLocation, goAngle + (Math.PI/2), 1);
+            goAngle = wallSmoothing(myLocation, goAngle + (Math.PI/2), 1);
         }
 
         setBackAsFront(robot, goAngle);
