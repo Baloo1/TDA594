@@ -15,12 +15,12 @@ public class GFTargeting extends AbstractTargeting {
 	}
 	
 	@Override
-	public void onScannedRobot(ScannedRobotEvent e) {
-		final double enemyAbsoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
-		final double enemyDistance = e.getDistance();
-		final double enemyVelocity = e.getVelocity();
+	public void onScannedRobot(ScannedRobotEvent event) {
+		final double enemyAbsoluteBearing = robot.getHeadingRadians() + event.getBearingRadians();
+		final double enemyDistance = event.getDistance();
+		final double enemyVelocity = event.getVelocity();
 		if (enemyVelocity != 0) {
-			lateralDirection = GFTUtils.sign(enemyVelocity * Math.sin(e.getHeadingRadians() - enemyAbsoluteBearing));
+			lateralDirection = GFTUtils.sign(enemyVelocity * Math.sin(event.getHeadingRadians() - enemyAbsoluteBearing));
 		}
 		GFTWave wave = new GFTWave(robot);
 		wave.gunLocation = new Point2D.Double(robot.getX(), robot.getY());

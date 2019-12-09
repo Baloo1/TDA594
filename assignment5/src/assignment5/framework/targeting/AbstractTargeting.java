@@ -11,5 +11,5 @@ public abstract class AbstractTargeting implements IEventsTarget {
 	}
 	
 	@Override
-	public abstract void onScannedRobot(ScannedRobotEvent e);
+	public abstract void onScannedRobot(ScannedRobotEvent event);
 }

@@ -27,9 +27,9 @@ public class RandomFluidOrbitMovement extends AbstractMovement {
 		super(robot);
 	}
 
-	public void onScannedRobot(ScannedRobotEvent e) {
-		double enemyAbsoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
-		double enemyDistance = e.getDistance();
+	public void onScannedRobot(ScannedRobotEvent event) {
+		double enemyAbsoluteBearing = robot.getHeadingRadians() + event.getBearingRadians();
+		double enemyDistance = event.getDistance();
 		Point2D robotLocation = new Point2D.Double(robot.getX(), robot.getY());
 		Point2D enemyLocation = GFTUtils.project(robotLocation, enemyAbsoluteBearing, enemyDistance);
 		Point2D robotDestination;
@@ -50,19 +50,19 @@ public class RandomFluidOrbitMovement extends AbstractMovement {
 	}
 
 	@Override
-	public void onHitByBullet(HitByBulletEvent e) {
+	public void onHitByBullet(HitByBulletEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onDeath(DeathEvent e) {
+	public void onDeath(DeathEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onBulletHit(BulletHitEvent e) {
+	public void onBulletHit(BulletHitEvent event) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -24,23 +24,23 @@ public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IE
 	}
 
 	@Override
-	public void onScannedRobot(ScannedRobotEvent e) {
-		movement.onScannedRobot(e);
-		targeting.onScannedRobot(e);
+	public void onScannedRobot(ScannedRobotEvent event) {
+		movement.onScannedRobot(event);
+		targeting.onScannedRobot(event);
 	}
 
 	@Override
-	public void onHitByBullet(HitByBulletEvent e) {
-		movement.onHitByBullet(e);
+	public void onHitByBullet(HitByBulletEvent event) {
+		movement.onHitByBullet(event);
 	}
 
 	@Override
-	public void onDeath(DeathEvent e) {
-		movement.onDeath(e);
+	public void onDeath(DeathEvent event) {
+		movement.onDeath(event);
 	}
 	
 	@Override
-	public void onBulletHit(BulletHitEvent e) {
-		movement.onBulletHit(e);
+	public void onBulletHit(BulletHitEvent event) {
+		movement.onBulletHit(event);
 	}
 }

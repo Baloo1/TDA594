@@ -10,12 +10,12 @@ public abstract class AbstractMovement implements IEventsMovement {
 		this.robot = robot;		
 	}
 	
-	public abstract void onScannedRobot(ScannedRobotEvent e); 
+	public abstract void onScannedRobot(ScannedRobotEvent event); 
 	
-	public abstract void onHitByBullet(HitByBulletEvent e); 
+	public abstract void onHitByBullet(HitByBulletEvent event); 
 	
-	public abstract void onDeath(DeathEvent e);
+	public abstract void onDeath(DeathEvent event);
 	
-	public abstract void onBulletHit(BulletHitEvent e); 
+	public abstract void onBulletHit(BulletHitEvent event); 
 	
 }
