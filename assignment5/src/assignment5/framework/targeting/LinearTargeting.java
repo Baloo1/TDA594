@@ -1,26 +1,33 @@
-import robocode.AdvancedRobot;
-import robocode.ScannedRobotEvent;
+package assignment5.framework.targeting;
+
+import robocode.*;
 import robocode.util.*;
 import java.awt.geom.*;
 
 import assignment5.framework.targeting.Targeting;
 
-public class LinearTargeting extends AdvancedRobot implements Targeting {
+public class LinearTargeting extends Targeting {
 	// CODE FOR LINEAR TARGETING TAKEN FROM WIKI
-
+	private AdvancedRobot robot;
+	
+	public LinearTargeting(AdvancedRobot robot) {
+		super(robot);
+	}
+	
+	@Override
 	public void onScannedRobot(ScannedRobotEvent e) {
-		double bulletPower = Math.min(3.0,getEnergy());
-		double myX = getX();
-		double myY = getY();
-		double absoluteBearing = getHeadingRadians() + e.getBearingRadians();
-		double enemyX = getX() + e.getDistance() * Math.sin(absoluteBearing);
-		double enemyY = getY() + e.getDistance() * Math.cos(absoluteBearing);
+		double bulletPower = Math.min(3.0,robot.getEnergy());
+		double myX = robot.getX();
+		double myY = robot.getY();
+		double absoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
+		double enemyX = robot.getX() + e.getDistance() * Math.sin(absoluteBearing);
+		double enemyY = robot.getY() + e.getDistance() * Math.cos(absoluteBearing);
 		double enemyHeading = e.getHeadingRadians();
 		double enemyVelocity = e.getVelocity();
 		double deltaTime = 0;
 		
-		double battleFieldHeight = getBattleFieldHeight(), 
-				battleFieldWidth = getBattleFieldWidth();
+		double battleFieldHeight = robot.getBattleFieldHeight(), 
+				battleFieldWidth = robot.getBattleFieldWidth();
 		double predictedX = enemyX, predictedY = enemyY;
 		while((++deltaTime) * (20.0 - 3.0 * bulletPower) < 
 				Point2D.Double.distance(myX, myY, predictedX, predictedY)){		
@@ -38,11 +45,11 @@ public class LinearTargeting extends AdvancedRobot implements Targeting {
 		}
 	}
 	double theta = Utils.normalAbsoluteAngle(Math.atan2(
-	predictedX - getX(), predictedY - getY()));
-	setTurnRadarRightRadians(
-	Utils.normalRelativeAngle(absoluteBearing - getRadarHeadingRadians()));
-	setTurnGunRightRadians(Utils.normalRelativeAngle(theta - getGunHeadingRadians()));
-	fire(bulletPower);
+	predictedX - robot.getX(), predictedY - robot.getY()));
+	robot.setTurnRadarRightRadians(
+	Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
+	robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
+	robot.fire(bulletPower);
 		
 	}
 

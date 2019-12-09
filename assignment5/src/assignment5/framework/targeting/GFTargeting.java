@@ -5,36 +5,40 @@ import robocode.util.Utils;
 
 import java.awt.geom.*; // for Point2D's
 
-public class GFTargeting extends AdvancedRobot implements Targeting {
+public class GFTargeting extends Targeting {
 	private static final double BULLET_POWER = 1.9;
 	private static double lateralDirection;
 	private static double lastEnemyVelocity;
+		
+	public GFTargeting(AdvancedRobot robot) {
+		super(robot);
+	}
 	
-	public GFTargeting() { }
-	
+	@Override
 	public void onScannedRobot(ScannedRobotEvent e) {
-		double enemyAbsoluteBearing = getHeadingRadians() + e.getBearingRadians();
+		double enemyAbsoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
 		double enemyDistance = e.getDistance();
 		double enemyVelocity = e.getVelocity();
 		if (enemyVelocity != 0) {
 			lateralDirection = GFTUtils.sign(enemyVelocity * Math.sin(e.getHeadingRadians() - enemyAbsoluteBearing));
 		}
-		GFTWave wave = new GFTWave(this);
-		wave.gunLocation = new Point2D.Double(getX(), getY());
+		GFTWave wave = new GFTWave(robot);
+		wave.gunLocation = new Point2D.Double(robot.getX(), robot.getY());
 		GFTWave.targetLocation = GFTUtils.project(wave.gunLocation, enemyAbsoluteBearing, enemyDistance);
 		wave.lateralDirection = lateralDirection;
 		wave.bulletPower = BULLET_POWER;
 		wave.setSegmentations(enemyDistance, enemyVelocity, lastEnemyVelocity);
 		lastEnemyVelocity = enemyVelocity;
 		wave.bearing = enemyAbsoluteBearing;
-		setTurnGunRightRadians(Utils
-				.normalRelativeAngle(enemyAbsoluteBearing - getGunHeadingRadians() + wave.mostVisitedBearingOffset()));
-		setFire(wave.bulletPower);
-		if (getEnergy() >= BULLET_POWER) {
-			addCustomEvent(wave);
+		robot.setTurnGunRightRadians(Utils
+				.normalRelativeAngle(enemyAbsoluteBearing - robot.getGunHeadingRadians() + wave.mostVisitedBearingOffset()));
+		robot.setFire(wave.bulletPower);
+		if (robot.getEnergy() >= BULLET_POWER) {
+			robot.addCustomEvent(wave);
 		}
-		setTurnRadarRightRadians(Utils.normalRelativeAngle(enemyAbsoluteBearing - getRadarHeadingRadians()) * 2);
+		robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(enemyAbsoluteBearing - robot.getRadarHeadingRadians()) * 2);
 	}
+
 }
 
 class GFTWave extends Condition {
