@@ -13,7 +13,7 @@ public class ProductLineRobot extends AdvancedRobot implements IEvents {
 	public void run() {
 		
 		movement = new WaveSurfingMovement(this);
-		targeting = new GFTargeting(this);
+		targeting = new LinearTargeting(this);
 	
 		setAdjustGunForRobotTurn(true);
 		setAdjustRadarForGunTurn(true);
