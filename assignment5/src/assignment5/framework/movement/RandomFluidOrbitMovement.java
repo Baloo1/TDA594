@@ -15,7 +15,6 @@ public class RandomFluidOrbitMovement extends Movement {
 	private static final double DEFAULT_EVASION = 1.2;
 	private static final double WALL_BOUNCE_TUNER = 0.699484;
 
-	private AdvancedRobot robot;
 	private Rectangle2D fieldRectangle = new Rectangle2D.Double(WALL_MARGIN, WALL_MARGIN,
 			BATTLE_FIELD_WIDTH - WALL_MARGIN * 2, BATTLE_FIELD_HEIGHT - WALL_MARGIN * 2);
 	private double enemyFirePower = 3;
