@@ -1,6 +1,5 @@
 package assignment5.framework.movement;
 
-import assignment5.framework.targeting.IEventsTarget;
 import robocode.*;
 
 public abstract class AbstractMovement implements IEventsMovement {
