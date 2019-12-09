@@ -1,4 +1,4 @@
-package assignment5.framework;
+package assignment5.framework.targeting;
 
 import robocode.*;
 
