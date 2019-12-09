@@ -16,9 +16,9 @@ public class GFTargeting extends Targeting {
 	
 	@Override
 	public void onScannedRobot(ScannedRobotEvent e) {
-		double enemyAbsoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
-		double enemyDistance = e.getDistance();
-		double enemyVelocity = e.getVelocity();
+		final double enemyAbsoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
+		final double enemyDistance = e.getDistance();
+		final double enemyVelocity = e.getVelocity();
 		if (enemyVelocity != 0) {
 			lateralDirection = GFTUtils.sign(enemyVelocity * Math.sin(e.getHeadingRadians() - enemyAbsoluteBearing));
 		}
@@ -42,6 +42,7 @@ public class GFTargeting extends Targeting {
 }
 
 class GFTWave extends Condition {
+	// TODO Implement getters and setters
 	static Point2D targetLocation;
 
 	double bulletPower;
@@ -63,8 +64,8 @@ class GFTWave extends Condition {
 	private AdvancedRobot robot;
 	private double distanceTraveled;
 
-	GFTWave(AdvancedRobot _robot) {
-		this.robot = _robot;
+	GFTWave(AdvancedRobot robot) {
+		this.robot = robot;
 	}
 
 	public boolean test() {
@@ -96,9 +97,9 @@ class GFTWave extends Condition {
 	}
 
 	private int currentBin() {
-		int bin = (int) Math
-				.round(((Utils.normalRelativeAngle(GFTUtils.absoluteBearing(gunLocation, targetLocation) - bearing))
-						/ (lateralDirection * BIN_WIDTH)) + MIDDLE_BIN);
+		final int bin = (int) Math
+				.round((Utils.normalRelativeAngle(GFTUtils.absoluteBearing(gunLocation, targetLocation) - bearing))
+						/ (lateralDirection * BIN_WIDTH)) + MIDDLE_BIN;
 		return GFTUtils.minMax(bin, 0, BINS - 1);
 	}
 
