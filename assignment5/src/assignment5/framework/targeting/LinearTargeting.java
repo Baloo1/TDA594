@@ -4,9 +4,7 @@ import robocode.*;
 import robocode.util.*;
 import java.awt.geom.*;
 
-import assignment5.framework.targeting.Targeting;
-
-public class LinearTargeting extends Targeting {
+public class LinearTargeting extends AbstractTargeting {
 	
 	// CODE FOR LINEAR TARGETING TAKEN FROM WIKI	
 	public LinearTargeting(AdvancedRobot robot) {

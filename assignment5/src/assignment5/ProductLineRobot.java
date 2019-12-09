@@ -7,7 +7,7 @@ import assignment5.framework.movement.*;
 
 public class ProductLineRobot extends AdvancedRobot implements IEvents {
 	private AbstractMovement movement;
-	private Targeting targeting;
+	private AbstractTargeting targeting;
 	
 	@Override
 	public void run() {
