@@ -19,12 +19,13 @@ public class LinearTargeting extends AbstractTargeting {
 		double enemyY = robot.getY() + event.getDistance() * Math.cos(absoluteBearing);
 		double enemyHeading = event.getHeadingRadians();
 		double enemyVelocity = event.getVelocity();
-		double deltaTime = 0;
+		double deltaTime = 1;
 
-		final double battleFieldHeight = robot.getBattleFieldHeight(), battleFieldWidth = robot.getBattleFieldWidth();
+		final double battleFieldHeight = robot.getBattleFieldHeight();
+		final double battleFieldWidth = robot.getBattleFieldWidth();
 		double predictedX = enemyX;
 		double predictedY = enemyY;
-		while ((++deltaTime) * (20.0 - 3.0 * bulletPower) < Point2D.Double.distance(myX, myY, predictedX, predictedY)) {
+		while (deltaTime * (20.0 - 3.0 * bulletPower) < Point2D.Double.distance(myX, myY, predictedX, predictedY)) {
 			predictedX += Math.sin(enemyHeading) * enemyVelocity;
 			predictedY += Math.cos(enemyHeading) * enemyVelocity;
 			if (predictedX < 18.0 || predictedY < 18.0 || predictedX > battleFieldWidth - 18.0
@@ -33,13 +34,13 @@ public class LinearTargeting extends AbstractTargeting {
 				predictedY = Math.min(Math.max(18.0, predictedY), battleFieldHeight - 18.0);
 				break;
 			}
+			deltaTime++;
 		}
-		double theta = Utils.normalAbsoluteAngle(Math.atan2(predictedX - robot.getX(), predictedY - robot.getY()));
+		final double theta = Utils.normalAbsoluteAngle(Math.atan2(predictedX - robot.getX(), predictedY - robot.getY()));
 		robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
 		robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
 		robot.fire(bulletPower);
 		System.out.println(theta);
-
 	}
 
 }
