@@ -1,9 +1,9 @@
 package assignment5.framework.targeting;
 
-import assignment5.framework.IEvents;
+import assignment5.framework.IEventsTarget;
 import robocode.*;
 
-public abstract class AbstractTargeting implements IEvents {
+public abstract class AbstractTargeting implements IEventsTarget {
 	
 	protected AdvancedRobot robot;
 	
@@ -13,13 +13,4 @@ public abstract class AbstractTargeting implements IEvents {
 	
 	@Override
 	public abstract void onScannedRobot(ScannedRobotEvent e);
-
-	@Override
-	public abstract void onHitByBullet(HitByBulletEvent e);
-
-	@Override
-	public abstract void onDeath(DeathEvent e);
-
-	@Override
-	public abstract void onBulletHit(BulletHitEvent e);
 }
