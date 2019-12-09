@@ -5,7 +5,7 @@ import robocode.util.Utils;
 
 import java.awt.geom.*; // for Point2D's
 
-public class GFTargeting extends Targeting {
+public class GFTargeting extends AbstractTargeting {
 	private static final double BULLET_POWER = 1.9;
 	private static double lateralDirection;
 	private static double lastEnemyVelocity;
