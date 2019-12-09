@@ -2,8 +2,6 @@ package assignment5;
 
 import robocode.*;
 import assignment5.framework.targeting.*;
-import assignment5.framework.IEventsMovement;
-import assignment5.framework.IEventsTarget;
 import assignment5.framework.movement.*;
 
 public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IEventsMovement {
