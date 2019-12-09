@@ -10,7 +10,7 @@ public class StopAndGoMovement extends Movement {
 	final static double velocityScale = 1;
 	static double lastEnemyHeading;
 	static double lastEnemyEnergy;
-	static boolean flat;
+	boolean flat;
 	static boolean firstScan;
 	static StringBuilder data = new StringBuilder();
 	static double bulletVelocity;
