@@ -12,25 +12,25 @@ public class NoneMovement extends AbstractMovement {
 	}
 
 	@Override
-	public void onScannedRobot(ScannedRobotEvent e) {
+	public void onScannedRobot(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onHitByBullet(HitByBulletEvent e) {
+	public void onHitByBullet(HitByBulletEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onDeath(DeathEvent e) {
+	public void onDeath(DeathEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onBulletHit(BulletHitEvent e) {
+	public void onBulletHit(BulletHitEvent event) {
 		// TODO Auto-generated method stub
 		
 	}

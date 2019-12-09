@@ -15,7 +15,7 @@ public class NoneTargeting extends AbstractTargeting {
 	 * Not implemented, not needed
 	 */
 	@Override
-	public void onScannedRobot(ScannedRobotEvent e) {
+	public void onScannedRobot(ScannedRobotEvent event) {
 		// TODO Auto-generated method stub
 
 	}

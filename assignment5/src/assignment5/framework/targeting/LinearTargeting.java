@@ -10,15 +10,15 @@ public class LinearTargeting extends AbstractTargeting {
 	}
 
 	@Override
-	public void onScannedRobot(ScannedRobotEvent e) {
+	public void onScannedRobot(ScannedRobotEvent event) {
 		double bulletPower = Math.min(3.0, robot.getEnergy());
 		double myX = robot.getX();
 		double myY = robot.getY();
-		double absoluteBearing = robot.getHeadingRadians() + e.getBearingRadians();
-		double enemyX = robot.getX() + e.getDistance() * Math.sin(absoluteBearing);
-		double enemyY = robot.getY() + e.getDistance() * Math.cos(absoluteBearing);
-		double enemyHeading = e.getHeadingRadians();
-		double enemyVelocity = e.getVelocity();
+		double absoluteBearing = robot.getHeadingRadians() + event.getBearingRadians();
+		double enemyX = robot.getX() + event.getDistance() * Math.sin(absoluteBearing);
+		double enemyY = robot.getY() + event.getDistance() * Math.cos(absoluteBearing);
+		double enemyHeading = event.getHeadingRadians();
+		double enemyVelocity = event.getVelocity();
 		double deltaTime = 0;
 
 		final double battleFieldHeight = robot.getBattleFieldHeight(), battleFieldWidth = robot.getBattleFieldWidth();

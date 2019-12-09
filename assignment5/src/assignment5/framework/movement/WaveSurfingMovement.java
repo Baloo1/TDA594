@@ -31,11 +31,11 @@ public class WaveSurfingMovement extends AbstractMovement {
 	}
 	
 	@Override
-	public void onScannedRobot(ScannedRobotEvent e) {
+	public void onScannedRobot(ScannedRobotEvent event) {
         myLocation = new Point2D.Double(robot.getX(), robot.getY());
 
-        final double lateralVelocity = robot.getVelocity()*Math.sin(e.getBearingRadians());
-        final double absBearing = e.getBearingRadians() + robot.getHeadingRadians();
+        final double lateralVelocity = robot.getVelocity()*Math.sin(event.getBearingRadians());
+        final double absBearing = event.getBearingRadians() + robot.getHeadingRadians();
 
         robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absBearing - robot.getRadarHeadingRadians()) * 2);
 
@@ -43,7 +43,7 @@ public class WaveSurfingMovement extends AbstractMovement {
         surfAbsBearings.add(0, absBearing + Math.PI);
 
 
-        final double bulletPower = oppEnergy - e.getEnergy();
+        final double bulletPower = oppEnergy - event.getEnergy();
         if (bulletPower < 3.01 && bulletPower > 0.09
             && surfDirections.size() > 2) {
             EnemyWave enemyWave = new EnemyWave();
@@ -57,11 +57,11 @@ public class WaveSurfingMovement extends AbstractMovement {
             enemyWaves.add(enemyWave);
         }
 
-        oppEnergy = e.getEnergy();
+        oppEnergy = event.getEnergy();
 
         // update after EnemyWave detection, because that needs the previous
         // enemy location as the source of the wave
-        enemyLocation = project(myLocation, absBearing, e.getDistance());
+        enemyLocation = project(myLocation, absBearing, event.getDistance());
 
         updateWaves();
         doSurfing();
@@ -123,12 +123,12 @@ public class WaveSurfingMovement extends AbstractMovement {
     }
 
     @Override
-    public void onHitByBullet(HitByBulletEvent e) {
+    public void onHitByBullet(HitByBulletEvent event) {
         // If the _enemyWaves collection is empty, we must have missed the
         // detection of this wave somehow.
         if (!enemyWaves.isEmpty()) {
             final Point2D.Double hitBulletLocation = new Point2D.Double(
-                e.getBullet().getX(), e.getBullet().getY());
+                event.getBullet().getX(), event.getBullet().getY());
             EnemyWave hitWave = null;
 
             // look through the EnemyWaves, and find one that could've hit us.
@@ -137,7 +137,7 @@ public class WaveSurfingMovement extends AbstractMovement {
 
                 if (Math.abs(enemyWave.distanceTraveled -
                     myLocation.distance(enemyWave.fireLocation)) < 50
-                    && Math.abs(bulletVelocity(e.getBullet().getPower()) 
+                    && Math.abs(bulletVelocity(event.getBullet().getPower()) 
                         - enemyWave.bulletVelocity) < 0.001) {
                     hitWave = enemyWave;
                     break;
@@ -305,7 +305,7 @@ public class WaveSurfingMovement extends AbstractMovement {
     }
 
 	@Override
-	public void onDeath(DeathEvent e) {
+	public void onDeath(DeathEvent event) {
 		// TODO Auto-generated method stub
 		
 	}

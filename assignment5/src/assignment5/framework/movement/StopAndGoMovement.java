@@ -18,12 +18,12 @@ public class StopAndGoMovement extends AbstractMovement {
 	}
 
 	@Override
-	public void onScannedRobot(ScannedRobotEvent e) {
+	public void onScannedRobot(ScannedRobotEvent event) {
 		double headingRadians;
 		double eDistance;
-		final double absbearing = e.getBearingRadians() + (headingRadians = robot.getHeadingRadians());
+		final double absbearing = event.getBearingRadians() + (headingRadians = robot.getHeadingRadians());
 		final Point2D.Double myLocation = new Point2D.Double(robot.getX(), robot.getY());
-		final boolean rammer = (eDistance = e.getDistance()) < 100 || robot.getTime() < 20;
+		final boolean rammer = (eDistance = event.getDistance()) < 100 || robot.getTime() < 20;
 
 		final Rectangle2D.Double field = new Rectangle2D.Double(17.9, 17.9, 764.1, 564.1);
 
@@ -39,7 +39,7 @@ public class StopAndGoMovement extends AbstractMovement {
 		
 		robot.setTurnRightRadians(Math.tan(v2 -= headingRadians));
 
-		final double deltaE = lastEnemyEnergy - (lastEnemyEnergy = e.getEnergy());
+		final double deltaE = lastEnemyEnergy - (lastEnemyEnergy = event.getEnergy());
 
 		if ((0 < deltaE && deltaE < 3.001) || flat || rammer) {
 			robot.setAhead((37 + ((int) (deltaE - 0.50001)) * 11) * Math.signum(Math.cos(v2)));
@@ -47,19 +47,19 @@ public class StopAndGoMovement extends AbstractMovement {
 	}
 
 	@Override
-	public void onHitByBullet(HitByBulletEvent e) {
-		lastEnemyEnergy += 20 - (bulletVelocity = e.getVelocity());
+	public void onHitByBullet(HitByBulletEvent event) {
+		lastEnemyEnergy += 20 - (bulletVelocity = event.getVelocity());
 	}
 
 	@Override
-	public void onDeath(DeathEvent e) {
+	public void onDeath(DeathEvent event) {
 		if (robot.getRoundNum() < 3) {
 			flat = true;	
 		}
 	}
 
 	@Override
-	public void onBulletHit(BulletHitEvent e) {
+	public void onBulletHit(BulletHitEvent event) {
 		lastEnemyEnergy -= 10;
 
 	}
