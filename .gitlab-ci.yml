@@ -1,15 +1,20 @@
 image: maven:latest
 
-stages: 
-    - build 
+stages:
+    - build
     - test
 
-build: 
-    stage: build 
-    tags: [docker]
-    script: mvn compile
+build:
+  stage: build
+  tags:
+    - docker
 
-test: 
-    stage: test 
-    tags: [docker] 
-    script: mvn test
+  script:
+    - mvn compile
+
+test:
+  stage: test
+  tags:
+    - docker
+  script:
+    - mvn test
