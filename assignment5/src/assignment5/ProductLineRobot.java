@@ -9,10 +9,11 @@ public class ProductLineRobot extends AdvancedRobot implements IEvents {
 	private Movement movement;
 	private Targeting targeting;
 	
+	@Override
 	public void run() {
 		
-		movement = new WaveSurfing(this);
-		targeting = new GFTargeting(this);
+		movement = new WaveSurfingMovement(this);
+		targeting = new LinearTargeting(this);
 	
 		setAdjustGunForRobotTurn(true);
 		setAdjustRadarForGunTurn(true);
@@ -23,19 +24,25 @@ public class ProductLineRobot extends AdvancedRobot implements IEvents {
 		} while (true);
 	}
 
+	@Override
 	public void onScannedRobot(ScannedRobotEvent e) {
 		movement.onScannedRobot(e);
 		targeting.onScannedRobot(e);
 	}
-	
+
+	@Override
 	public void onHitByBullet(HitByBulletEvent e) {
 		movement.onHitByBullet(e);
 		targeting.onHitByBullet(e);
 	}
+
+	@Override
 	public void onDeath(DeathEvent e) {
 		movement.onDeath(e);
 		targeting.onDeath(e);
 	}
+	
+	@Override
 	public void onBulletHit(BulletHitEvent e) {
 		movement.onBulletHit(e);
 		targeting.onBulletHit(e);
