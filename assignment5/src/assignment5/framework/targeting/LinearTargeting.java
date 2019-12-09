@@ -7,9 +7,8 @@ import java.awt.geom.*;
 import assignment5.framework.targeting.Targeting;
 
 public class LinearTargeting extends Targeting {
-	// CODE FOR LINEAR TARGETING TAKEN FROM WIKI
-	private AdvancedRobot robot;
 	
+	// CODE FOR LINEAR TARGETING TAKEN FROM WIKI	
 	public LinearTargeting(AdvancedRobot robot) {
 		super(robot);
 	}
@@ -51,6 +50,7 @@ public class LinearTargeting extends Targeting {
 	Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
 	robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
 	robot.fire(bulletPower);
+	System.out.println(theta);
 		
 	}
 
