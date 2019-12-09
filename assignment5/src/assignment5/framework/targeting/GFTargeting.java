@@ -6,14 +6,29 @@ import robocode.util.Utils;
 import java.awt.geom.*; // for Point2D's
 
 public class GFTargeting extends AbstractTargeting {
+	/**
+	 * The bullet power for GFTargeting
+	 */
 	private static final double BULLET_POWER = 1.9;
+	/**
+	 * Direction for Sideways movement
+	 */
 	private static double lateralDirection;
+	/**
+	 * The direction and speed for an enemy Robot
+	 */
 	private static double lastEnemyVelocity;
 		
+	/**
+	 * @param robot an instance of a RoboCode robot
+	 */
 	public GFTargeting(AdvancedRobot robot) {
 		super(robot);
 	}
 	
+	/**
+	 * @param event triggered event when something happens in RoboCode
+	 */
 	@Override
 	public void onScannedRobot(ScannedRobotEvent event) {
 		final double enemyAbsoluteBearing = robot.getHeadingRadians() + event.getBearingRadians();
