@@ -26,9 +26,10 @@ public class LinearTargeting extends Targeting {
 		double enemyVelocity = e.getVelocity();
 		double deltaTime = 0;
 		
-		double battleFieldHeight = robot.getBattleFieldHeight(), 
+		final double battleFieldHeight = robot.getBattleFieldHeight(), 
 				battleFieldWidth = robot.getBattleFieldWidth();
-		double predictedX = enemyX, predictedY = enemyY;
+		double predictedX = enemyX;
+		double predictedY = enemyY;
 		while((++deltaTime) * (20.0 - 3.0 * bulletPower) < 
 				Point2D.Double.distance(myX, myY, predictedX, predictedY)){		
 			predictedX += Math.sin(enemyHeading) * enemyVelocity;	
