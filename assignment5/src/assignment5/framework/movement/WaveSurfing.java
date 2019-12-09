@@ -2,10 +2,8 @@ package assignment5.framework.movement;
 
 import robocode.*; // for Double and Integer objects
 import robocode.util.Utils;
-import robocode.Robot.*;
 
 import java.awt.geom.*; // for Point2D's
-import java.lang.*; // for Double and Integer objects
 import java.util.ArrayList;
 
 
@@ -15,9 +13,9 @@ public class WaveSurfing extends Movement {
 	public Point2D.Double _myLocation; // our bot's location
 	public Point2D.Double _enemyLocation; // enemy bot's location
 
-	public ArrayList _enemyWaves;
-	public ArrayList _surfDirections;
-	public ArrayList _surfAbsBearings;
+	public ArrayList<EnemyWave> _enemyWaves;
+	public ArrayList<Integer> _surfDirections;
+	public ArrayList<Double> _surfAbsBearings;
 	
 	public static double _oppEnergy = 100.0;
 	public static Rectangle2D.Double _fieldRect = new java.awt.geom.Rectangle2D.Double(18, 18, 764, 564);
@@ -26,9 +24,9 @@ public class WaveSurfing extends Movement {
 	public WaveSurfing(AdvancedRobot robot) {
 		super(robot);
 		
-		_enemyWaves = new ArrayList();
-		_surfDirections = new ArrayList();
-		_surfAbsBearings = new ArrayList();
+		_enemyWaves = new ArrayList<EnemyWave>();
+		_surfDirections = new ArrayList<Integer>();
+		_surfAbsBearings = new ArrayList<Double>();
 	}
 	
 	@Override
@@ -40,9 +38,8 @@ public class WaveSurfing extends Movement {
 
         robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absBearing - robot.getRadarHeadingRadians()) * 2);
 
-        _surfDirections.add(0,
-            new Integer((lateralVelocity >= 0) ? 1 : -1));
-        _surfAbsBearings.add(0, new Double(absBearing + Math.PI));
+        _surfDirections.add(0, (lateralVelocity >= 0) ? 1 : -1);
+        _surfAbsBearings.add(0, absBearing + Math.PI);
 
 
         double bulletPower = _oppEnergy - e.getEnergy();
