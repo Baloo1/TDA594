@@ -299,5 +299,17 @@ public class WaveSurfingMovement extends AbstractMovement {
             robot.setAhead(100);
         }
     }
+
+	@Override
+	public void onDeath(DeathEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onBulletHit(BulletHitEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
