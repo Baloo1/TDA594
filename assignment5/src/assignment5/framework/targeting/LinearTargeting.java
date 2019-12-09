@@ -5,20 +5,26 @@ import robocode.util.*;
 import java.awt.geom.*;
 
 public class LinearTargeting extends AbstractTargeting {
+	/**
+	 * @param robot an instance of a RoboCode robot
+	 */
 	public LinearTargeting(AdvancedRobot robot) {
 		super(robot);
 	}
 
+	/**
+	 * @param event triggered event when something happens in RoboCode
+	 */
 	@Override
 	public void onScannedRobot(ScannedRobotEvent event) {
-		double bulletPower = Math.min(3.0, robot.getEnergy());
-		double myX = robot.getX();
-		double myY = robot.getY();
-		double absoluteBearing = robot.getHeadingRadians() + event.getBearingRadians();
-		double enemyX = robot.getX() + event.getDistance() * Math.sin(absoluteBearing);
-		double enemyY = robot.getY() + event.getDistance() * Math.cos(absoluteBearing);
-		double enemyHeading = event.getHeadingRadians();
-		double enemyVelocity = event.getVelocity();
+		final double bulletPower = Math.min(3.0, robot.getEnergy());
+		final double myX = robot.getX();
+		final double myY = robot.getY();
+		final double absoluteBearing = robot.getHeadingRadians() + event.getBearingRadians();
+		final double enemyX = robot.getX() + event.getDistance() * Math.sin(absoluteBearing);
+		final double enemyY = robot.getY() + event.getDistance() * Math.cos(absoluteBearing);
+		final double enemyHeading = event.getHeadingRadians();
+		final double enemyVelocity = event.getVelocity();
 		double deltaTime = 1;
 
 		final double battleFieldHeight = robot.getBattleFieldHeight();
@@ -40,7 +46,6 @@ public class LinearTargeting extends AbstractTargeting {
 		robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
 		robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
 		robot.fire(bulletPower);
-		System.out.println(theta);
 	}
 
 }
