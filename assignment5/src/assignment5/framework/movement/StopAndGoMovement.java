@@ -3,11 +3,11 @@ package assignment5.framework.movement;
 import robocode.*; // for Double and Integer objects
 import java.awt.geom.*; // for Point2D's
 
-public class StopAndGoMovement extends Movement {
+public class StopAndGoMovement extends AbstractMovement {
 
-	static double direction = 1;
-	final static double angleScale = 24;
-	final static double velocityScale = 1;
+	/* default */ static double direction = 1;
+	/* default */ final static double angleScale = 24;
+	/* default */ final static double velocityScale = 1;
 	static double lastEnemyHeading;
 	static double lastEnemyEnergy;
 	boolean flat;
