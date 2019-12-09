@@ -4,9 +4,12 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import robocode.AdvancedRobot;
+import robocode.BulletHitEvent;
+import robocode.DeathEvent;
+import robocode.HitByBulletEvent;
 import robocode.ScannedRobotEvent;
 
-public class RandomFluidOrbitMovement extends Movement {
+public class RandomFluidOrbitMovement extends AbstractMovement {
 	private static final double BATTLE_FIELD_WIDTH = 800;
 	private static final double BATTLE_FIELD_HEIGHT = 600;
 	private static final double WALL_MARGIN = 18;
@@ -36,14 +39,32 @@ public class RandomFluidOrbitMovement extends Movement {
 				&& tries < MAX_TRIES) {
 			tries++;
 		}
-		if ((Math.random() < (GFTUtils.bulletVelocity(enemyFirePower) / REVERSE_TUNER) / enemyDistance
-				|| tries > (enemyDistance / GFTUtils.bulletVelocity(enemyFirePower) / WALL_BOUNCE_TUNER))) {
+		if (Math.random() < (GFTUtils.bulletVelocity(enemyFirePower) / REVERSE_TUNER) / enemyDistance
+				|| tries > (enemyDistance / GFTUtils.bulletVelocity(enemyFirePower) / WALL_BOUNCE_TUNER)) {
 			direction = -direction;
 		}
 		// Jamougha's cool way
 		double angle = GFTUtils.absoluteBearing(robotLocation, robotDestination) - robot.getHeadingRadians();
 		robot.setAhead(Math.cos(angle) * 100);
 		robot.setTurnRightRadians(Math.tan(angle));
+	}
+
+	@Override
+	public void onHitByBullet(HitByBulletEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDeath(DeathEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onBulletHit(BulletHitEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
