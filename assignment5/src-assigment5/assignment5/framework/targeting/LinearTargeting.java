@@ -16,7 +16,7 @@ public class LinearTargeting extends AdvancedRobot implements Targeting {
 		double enemyX = getX() + e.getDistance() * Math.sin(absoluteBearing);
 		double enemyY = getY() + e.getDistance() * Math.cos(absoluteBearing);
 		double enemyHeading = e.getHeadingRadians();
-		double enemyVelocity = e.getsVelocity();
+		double enemyVelocity = e.getVelocity();
 		double deltaTime = 0;
 		
 		double battleFieldHeight = getBattleFieldHeight(), 
