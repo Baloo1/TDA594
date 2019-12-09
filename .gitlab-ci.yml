@@ -1,15 +1,23 @@
 image: maven:latest
 
-stages: 
-    - build 
+before_script:
+    - cd ./assignment5
+
+stages:
+    - build
     - test
 
-build: 
-    stage: build 
-    tags: [docker]
-    script: mvn compile
+build:
+  stage: build
+  tags:
+    - docker
 
-test: 
-    stage: test 
-    tags: [docker] 
-    script: mvn test
+  script:
+    - mvn compile
+
+test:
+  stage: test
+  tags:
+    - docker
+  script:
+    - mvn test
