@@ -42,7 +42,8 @@ public class LinearTargeting extends AbstractTargeting {
 			}
 			deltaTime++;
 		}
-		final double theta = Utils.normalAbsoluteAngle(Math.atan2(predictedX - robot.getX(), predictedY - robot.getY()));
+		final double theta = Utils
+				.normalAbsoluteAngle(Math.atan2(predictedX - robot.getX(), predictedY - robot.getY()));
 		robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
 		robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
 		robot.fire(bulletPower);
