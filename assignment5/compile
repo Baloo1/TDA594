@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp *.properties target/classes/properties/
+mvn compile

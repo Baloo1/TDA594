@@ -5,7 +5,26 @@
   <version>0.0.1-SNAPSHOT</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <pluginManagement>
     <plugins>
+      <plugin>
+		<artifactId>exec-maven-plugin</artifactId>
+    	<version>1.6.0</version>
+        <groupId>org.codehaus.mojo</groupId>
+        <executions>
+            <execution><!-- Run our version calculation script -->
+                <id>Copying properties file</id>
+                <phase>compile</phase>
+                <goals>
+                    <goal>exec</goal>
+                </goals>
+                <configuration>
+                    <executable>bash</executable>
+            <commandlineArgs>${basedir}/scripts/properties-copy.sh</commandlineArgs>
+                </configuration>
+            </execution>
+        </executions>
+	  </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
@@ -15,6 +34,8 @@
         </configuration>
       </plugin>
     </plugins>
+    
+    </pluginManagement>
   </build>
   <dependencies>
   <dependency>
