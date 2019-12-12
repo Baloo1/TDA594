@@ -2,8 +2,7 @@ package assignment5;
 
 import robocode.*;
 import assignment5.framework.targeting.*;
-import properties.PropertyManager;
-
+import assignment5.config.ConfigurationManager;
 import assignment5.framework.movement.*;
  
 
@@ -13,23 +12,23 @@ public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IE
 	
 	@Override
 	public void run() {
-		if (PropertyManager.getProperty("WaveString")) {
+		if (ConfigurationManager.getInstance().getProperty("WaveSurfing")) {
 			movement = new WaveSurfingMovement(this);
-		} else if (PropertyManager.getProperty("RandomFluidOrbit")) {
+		} else if (ConfigurationManager.getInstance().getProperty("RandomFluidOrbit")) {
 			movement = new RandomFluidOrbitMovement(this);
-		} else if (PropertyManager.getProperty("StopAndGo")) {
+		} else if (ConfigurationManager.getInstance().getProperty("StopAndGo")) {
 			movement = new StopAndGoMovement(this);
-		} else if (PropertyManager.getProperty("NoneMovement")) {
+		} else if (ConfigurationManager.getInstance().getProperty("NoneMovement")) {
 			movement = new NoneMovement(this);
 		} else {
 			throw new IllegalArgumentException("No movement enabled");
 		}
 		
-		if (PropertyManager.getProperty("GFTargeting")) {
+		if (ConfigurationManager.getInstance().getProperty("GuessFactor")) {
 			targeting = new GFTargeting(this);
-		} else if (PropertyManager.getProperty("Linear")) {
+		} else if (ConfigurationManager.getInstance().getProperty("Linear")) {
 			targeting = new LinearTargeting(this);
-		} else if (PropertyManager.getProperty("NoneTargeting")) {
+		} else if (ConfigurationManager.getInstance().getProperty("NoneTargeting")) {
 			targeting = new NoneTargeting(this);
 		} else {
 			throw new IllegalArgumentException("No targeting enabled");
