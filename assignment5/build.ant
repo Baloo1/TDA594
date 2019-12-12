@@ -1,12 +1,11 @@
-<project name="PropertyCopy" default="copyPropertiesToBin">
-
-	<!-- adapt the folders (here, this build.ant file is in a sub-folder of the projet) -->
-	<property name="projectHome" location="../." />
-	<property name="BinFolder" location="../bin" />
-
-	<target name="copyPropertiesToBin">
-		<delete file="${BinFolder}/runtime.properties" />
-		<copy file="${projectHome}/runtime.properties" todir="${BinFolder}" />
+<project name="Properties Copy" default="copyPropertiesFile" basedir=".">
+	
+	<property name="projectRoot" location="." />
+	<property name="destFolder" location="bin/" />
+	
+	<target name="copyPropertiesFile">
+		<delete file="${destFolder}/runtime.properties"/>
+		<copy file="${projectRoot}/runtime.properties" toDir="${destFolder}"/>
 	</target>
-
+  
 </project>
