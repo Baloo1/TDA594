@@ -280,6 +280,7 @@ fabric.properties
 
 ### FeatureIDE ###
 **/configs/*.xml
+**/*.properties
 
 # End of https://www.gitignore.io/api/intellij
 **/target/
