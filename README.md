@@ -27,3 +27,5 @@ Antenna, configruations and robot variants
 ## Assignment 5 
 
 Our framework for robot features
+
+To choose a configuration, select a valid feature configuration in configs/default.xml and run the ant build at the root of the project. You can then use the robot with the combination of feature you selected inside Robocode
