@@ -5,7 +5,29 @@
   <version>0.0.1-SNAPSHOT</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <pluginManagement>
     <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <configuration>
+              <tasks>
+                <exec
+                  dir="${assignment5}"
+                  executable="${assignment5}/build.ant"
+                  failonerror="true">
+                </exec>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
@@ -15,6 +37,8 @@
         </configuration>
       </plugin>
     </plugins>
+    
+    </pluginManagement>
   </build>
   <dependencies>
   <dependency>
