@@ -7,9 +7,10 @@ public abstract class AbstractTargeting implements IEventsTarget {
 	protected AdvancedRobot robot;
 	
 	public AbstractTargeting(AdvancedRobot robot) {
-		this.robot = robot;		
+		assert robot != null;
+	    this.robot = robot;
 	}
-	
+
 	@Override
 	public abstract void onScannedRobot(ScannedRobotEvent event);
 }
