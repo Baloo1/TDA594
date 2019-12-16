@@ -1,7 +1,7 @@
 <project name="Properties Copy" default="copyPropertiesFile" basedir=".">
 	
 	<property name="projectRoot" location="." />
-	<property name="destFolder" location="src/assignment5/config/" />
+	<property name="destFolder" location="src/assignment6/config/" />
 	
 	<target name="copyPropertiesFile">
 		<delete file="${destFolder}/runtime.properties"/>

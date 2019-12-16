@@ -1,4 +1,4 @@
-package assignment5.framework.movement;
+package assignment6.framework.movement;
 
 import robocode.*; // for Double and Integer objects
 import java.awt.geom.*; // for Point2D's

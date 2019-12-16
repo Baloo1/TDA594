@@ -1,4 +1,4 @@
-package assignment5.framework.movement;
+package assignment6.framework.movement;
 
 import robocode.AdvancedRobot;
 import robocode.BulletHitEvent;

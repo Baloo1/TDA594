@@ -1,4 +1,4 @@
-package assignment5.config;
+package assignment6.config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
