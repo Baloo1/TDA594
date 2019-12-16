@@ -1,4 +1,4 @@
-package assignment5.framework.targeting;
+package assignment6.framework.targeting;
 
 import robocode.AdvancedRobot;
 import robocode.ScannedRobotEvent;
