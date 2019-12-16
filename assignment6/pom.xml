@@ -3,6 +3,9 @@
   <groupId>assignment6</groupId>
   <artifactId>assignment6</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+    <evosuiteVersion>1.0.6</evosuiteVersion>
+  </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <pluginManagement>
@@ -36,20 +39,34 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.evosuite.plugins</groupId>
+        <artifactId>evosuite-maven-plugin</artifactId>
+        <version>${evosuiteVersion}</version>
+        <executions><execution>
+          <goals> <goal> prepare </goal> </goals>
+          <phase> process-test-classes </phase>
+        </execution></executions>
+      </plugin>
     </plugins>
-    
     </pluginManagement>
   </build>
   <dependencies>
-  <dependency>
-    <groupId>net.sf.robocode</groupId>
-    <artifactId>robocode.api</artifactId>
-    <version>1.9.2.1</version>
-  </dependency>
+    <dependency>
+      <groupId>net.sf.robocode</groupId>
+      <artifactId>robocode.api</artifactId>
+      <version>1.9.2.1</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit-dep</artifactId>
       <version>4.9</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.evosuite</groupId>
+      <artifactId>evosuite-standalone-runtime</artifactId>
+      <version>${evosuiteVersion}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
