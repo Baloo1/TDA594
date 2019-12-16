@@ -1,6 +1,7 @@
 import assignment6.framework.movement.StopAndGoMovement;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import robocode.AdvancedRobot;
 import robocode.Bullet;
 import robocode.HitByBulletEvent;
@@ -11,6 +12,7 @@ public class StopAndGoMovementTest {
     public void onScannedRobotTest() {
         AdvancedRobot robot = new AdvancedRobot();
         StopAndGoMovement tester = new StopAndGoMovement(robot);
+        assert
     }
 
     @Test
