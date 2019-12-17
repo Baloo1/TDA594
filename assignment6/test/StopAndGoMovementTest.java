@@ -44,8 +44,6 @@ public class StopAndGoMovementTest {
         AdvancedRobot robot = new AdvancedRobot();
         StopAndGoMovement tester = new StopAndGoMovement(robot);
 
-        tester.setDelta(event);
-        System.out.println(event.getEnergy());
         assertEquals(tester.setDelta(event), -10, 0);
     }
 
