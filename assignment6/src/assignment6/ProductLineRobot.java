@@ -15,15 +15,15 @@ public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IE
 	@Override
 	public void run() {
 		targetingFactory = new TargetingFactory(this);
-
+		movementFactory = new MovementFactory(this);
 		if (ConfigurationManager.getInstance().getProperty("WaveSurfing")) {
-			movement = new WaveSurfingMovement(this);
+			movement = movementFactory.getWaveSurfing();
 		} else if (ConfigurationManager.getInstance().getProperty("RandomFluidOrbit")) {
-			movement = new RandomFluidOrbitMovement(this);
+			movement = movementFactory.getRandomFluidOrbit();
 		} else if (ConfigurationManager.getInstance().getProperty("StopAndGo")) {
-			movement = new StopAndGoMovement(this);
+			movement = movementFactory.getStopAndGo();
 		} else if (ConfigurationManager.getInstance().getProperty("NoneMovement")) {
-			movement = new NoneMovement(this);
+			movement = movementFactory.getNoneMovement();
 		} else {
 			throw new IllegalArgumentException("No movement enabled");
 		}
