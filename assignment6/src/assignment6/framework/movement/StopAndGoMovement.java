@@ -7,11 +7,12 @@ public class StopAndGoMovement extends AbstractMovement {
 
 	/* default */ private static double direction = 1;
 	static double lastEnemyHeading;
-	static double lastEnemyEnergy;
-	boolean flat;
+	public static double lastEnemyEnergy;
+	public boolean flat;
 	static boolean firstScan;
 	static StringBuilder data = new StringBuilder();
 	static double bulletVelocity;
+
 
 	public StopAndGoMovement(AdvancedRobot robot) {
 		super(robot);
@@ -30,20 +31,25 @@ public class StopAndGoMovement extends AbstractMovement {
 		double v1, v2, offset = Math.PI / 2 + 1 - eDistance / 600;
 
 		/* Wait loop */ while (!field.contains(project(myLocation, v2 = absbearing + direction * (offset -= 0.02), 160)));
-		
-		if ((flat && !rammer && 
-				Math.random() < 0.6 * Math.sqrt(bulletVelocity / eDistance) - 0.04) 
+
+
+		if ((flat && !rammer && Math.random() < 0.6 * Math.sqrt(bulletVelocity / eDistance) - 0.04)
 			|| offset < Math.PI / 4) {
 			direction = -direction;
 		}
 		
 		robot.setTurnRightRadians(Math.tan(v2 -= headingRadians));
 
-		final double deltaE = lastEnemyEnergy - (lastEnemyEnergy = event.getEnergy());
+		//Test deltaE
+		final double deltaE = setDelta(event);
 
 		if ((0 < deltaE && deltaE < 3.001) || flat || rammer) {
 			robot.setAhead((37 + ((int) (deltaE - 0.50001)) * 11) * Math.signum(Math.cos(v2)));
 		}
+	}
+
+	public double setDelta(ScannedRobotEvent event){
+		return lastEnemyEnergy - (lastEnemyEnergy = event.getEnergy());
 	}
 
 	@Override
