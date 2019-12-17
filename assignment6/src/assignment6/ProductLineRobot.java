@@ -9,9 +9,13 @@ import assignment6.framework.movement.*;
 public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IEventsMovement {
 	private AbstractMovement movement;
 	private AbstractTargeting targeting;
+	private MovementFactory movementFactory;
+	private TargetingFactory targetingFactory;
 	
 	@Override
 	public void run() {
+		targetingFactory = new TargetingFactory(this);
+
 		if (ConfigurationManager.getInstance().getProperty("WaveSurfing")) {
 			movement = new WaveSurfingMovement(this);
 		} else if (ConfigurationManager.getInstance().getProperty("RandomFluidOrbit")) {
@@ -25,11 +29,11 @@ public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IE
 		}
 		
 		if (ConfigurationManager.getInstance().getProperty("GuessFactor")) {
-			targeting = new GFTargeting(this);
+			targeting = targetingFactory.getGFTargeting();
 		} else if (ConfigurationManager.getInstance().getProperty("Linear")) {
-			targeting = new LinearTargeting(this);
+			targeting = targetingFactory.getLinearTargeting();
 		} else if (ConfigurationManager.getInstance().getProperty("NoneTargeting")) {
-			targeting = new NoneTargeting(this);
+			targeting = targetingFactory.getNoneTargeting();
 		} else {
 			throw new IllegalArgumentException("No targeting enabled");
 		}
