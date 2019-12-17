@@ -39,11 +39,15 @@ public class StopAndGoMovement extends AbstractMovement {
 		
 		robot.setTurnRightRadians(Math.tan(v2 -= headingRadians));
 
-		final double deltaE = lastEnemyEnergy - (lastEnemyEnergy = event.getEnergy());
+		final double deltaE = setDelta(event);
 
 		if ((0 < deltaE && deltaE < 3.001) || flat || rammer) {
 			robot.setAhead((37 + ((int) (deltaE - 0.50001)) * 11) * Math.signum(Math.cos(v2)));
 		}
+	}
+
+	public double setDelta(ScannedRobotEvent event) {
+		return lastEnemyEnergy - (lastEnemyEnergy = event.getEnergy());
 	}
 
 	@Override
@@ -62,6 +66,10 @@ public class StopAndGoMovement extends AbstractMovement {
 	public void onBulletHit(BulletHitEvent event) {
 		lastEnemyEnergy -= 10;
 
+	}
+
+	public static double getLastEnemyEnergy() {
+		return lastEnemyEnergy;
 	}
 
 	/* default */
