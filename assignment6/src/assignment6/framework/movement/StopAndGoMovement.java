@@ -68,8 +68,14 @@ public class StopAndGoMovement extends AbstractMovement {
 
 	}
 
+
+	//Below are used for tests
 	public static double getLastEnemyEnergy() {
 		return lastEnemyEnergy;
+	}
+
+	public boolean isFlat() {
+		return flat;
 	}
 
 	/* default */

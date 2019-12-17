@@ -6,12 +6,12 @@ import static org.junit.Assert.*;
 import robocode.*;
 
 public class StopAndGoMovementTest {
-    AdvancedRobot robot = new AdvancedRobot();
-    StopAndGoMovement tester = new StopAndGoMovement(robot);
+    private AdvancedRobot robot = new AdvancedRobot();
+    private StopAndGoMovement tester = new StopAndGoMovement(robot);
 
+    //TODO: create test for onScannedRobotTest
     @Test
     public void onScannedRobotTest() {
-
     }
 
     @Test
@@ -22,9 +22,9 @@ public class StopAndGoMovementTest {
         assertEquals(tester.getLastEnemyEnergy(), 9, 0);
     }
 
+    //TODO: Create test for method onDeath
     @Test
     public void onDeathTest(){
-
     }
 
     @Test
