@@ -20,4 +20,9 @@ public class TargetingFactory {
     public AbstractTargeting getNoneTargeting(){
         return new NoneTargeting(robot);
     }
+    public AbstractTargeting getHeadOnTargeting(){
+        return new HeadOnTargeting(robot);
+    }
+
+
 }
