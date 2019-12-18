@@ -1,10 +1,10 @@
-package assignment6;
+package assignment6.framework.movement;
 import assignment6.framework.movement.*;
 import robocode.AdvancedRobot;
 
 public class MovementFactory {
     AdvancedRobot robot;
-    MovementFactory(AdvancedRobot robot){
+    public MovementFactory(AdvancedRobot robot){
         this.robot = robot;
     }
     public AbstractMovement getWaveSurfing(){
