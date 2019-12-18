@@ -1,10 +1,12 @@
 import Mock.MockAdvancedRobot;
 import assignment6.framework.movement.StopAndGoMovement;
-import static org.junit.Assert.*;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import robocode.*;
+
+import static org.junit.Assert.*;
+
 
 public class StopAndGoMovementTest {
     private MockAdvancedRobot robot = new MockAdvancedRobot();
@@ -23,10 +25,20 @@ public class StopAndGoMovementTest {
         assertEquals(9, tester.getLastEnemyEnergy(), 0);
     }
 
-    //TODO: Create test for method onDeath
     @Test
-    public void onDeathTest(){
-        System.out.println(robot.getRoundNum());
+    public void onDeathTestLowRound(){
+        DeathEvent event = new DeathEvent();
+
+        tester.onDeath(event);
+        assertTrue(tester.isFlat());
+    }
+
+    @Test
+    public void onDeathTestHighRound(){
+        DeathEvent event = new DeathEvent();
+        robot.setRoundNum(4);
+        tester.onDeath(event);
+        assertFalse(tester.isFlat());
     }
 
     @Test
