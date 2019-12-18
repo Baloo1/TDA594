@@ -26,7 +26,7 @@ public class StopAndGoMovementTest {
     }
 
     @Test
-    public void onDeathTestLowRound(){
+    public void onDeathLowRoundTest(){
         DeathEvent event = new DeathEvent();
 
         tester.onDeath(event);
@@ -34,7 +34,7 @@ public class StopAndGoMovementTest {
     }
 
     @Test
-    public void onDeathTestHighRound(){
+    public void onDeathHighRoundTest(){
         DeathEvent event = new DeathEvent();
         robot.setRoundNum(4);
         tester.onDeath(event);
