@@ -17,8 +17,6 @@ test:
   stage: test
   tags:
     - docker
-  before_script:
-    - cd assignment6/
   script:
     - mvn test
 
