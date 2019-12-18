@@ -1,4 +1,4 @@
-package assignment6;
+package assignment6.framework.targeting;
 import assignment6.framework.targeting.AbstractTargeting;
 import assignment6.framework.targeting.GFTargeting;
 import assignment6.framework.targeting.LinearTargeting;
@@ -8,7 +8,7 @@ import robocode.AdvancedRobot;
 
 public class TargetingFactory {
     AdvancedRobot robot;
-    TargetingFactory(AdvancedRobot robot){
+    public TargetingFactory(AdvancedRobot robot){
         this.robot = robot;
     }
     public AbstractTargeting getGFTargeting(){
