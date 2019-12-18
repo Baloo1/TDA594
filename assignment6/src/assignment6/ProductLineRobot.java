@@ -11,7 +11,8 @@ public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IE
 	private AbstractTargeting targeting;
 	private MovementFactory movementFactory;
 	private TargetingFactory targetingFactory;
-	
+
+
 	@Override
 	public void run() {
 		targetingFactory = new TargetingFactory(this);
@@ -34,7 +35,11 @@ public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IE
 			targeting = targetingFactory.getLinearTargeting();
 		} else if (ConfigurationManager.getInstance().getProperty("NoneTargeting")) {
 			targeting = targetingFactory.getNoneTargeting();
-		} else {
+		} else if (ConfigurationManager.getInstance().getProperty("HeadOnTargeting")){
+			targeting = targetingFactory.getHeadOnTargeting();
+		}
+
+		else {
 			throw new IllegalArgumentException("No targeting enabled");
 		}
 		
