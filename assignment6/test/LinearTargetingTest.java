@@ -1,11 +1,26 @@
-import assignment6.framework.targeting.AbstractTargeting;
-import assignment6.framework.targeting.LinearTargeting;
 import org.junit.Test;
-import robocode.AdvancedRobot;
+import org.junit.Before;
+import org.junit.After;
 
 public class LinearTargetingTest {
-    @Test(expected = AssertionError.class)
-    public void nullEvent() {
-            new LinearTargeting(null);
-    }
+
+  @Before
+  public void before() throws Exception {
+  }
+
+  @After
+  public void after() throws Exception {
+  }
+
+  /**
+   *
+   * Method: onScannedRobot(ScannedRobotEvent event)
+   *
+   */
+  @Test
+  public void testOnScannedRobot() throws Exception {
+
+  }
+
+
 }
