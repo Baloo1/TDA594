@@ -1,3 +1,4 @@
+import Mock.MockAdvancedRobot;
 import assignment6.framework.movement.StopAndGoMovement;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -6,7 +7,7 @@ import static org.junit.Assert.*;
 import robocode.*;
 
 public class StopAndGoMovementTest {
-    private AdvancedRobot robot = new AdvancedRobot();
+    private MockAdvancedRobot robot = new MockAdvancedRobot();
     private StopAndGoMovement tester = new StopAndGoMovement(robot);
 
     //TODO: create test for onScannedRobotTest
@@ -25,6 +26,7 @@ public class StopAndGoMovementTest {
     //TODO: Create test for method onDeath
     @Test
     public void onDeathTest(){
+        System.out.println(robot.getRoundNum());
     }
 
     @Test
