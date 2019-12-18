@@ -9,6 +9,7 @@ public class MockAdvancedRobot extends AdvancedRobot {
   private double y = 0;
   private double turnRightRadians = 0;
   private double ahead = 0;
+  private double radarRight = 0;
 
   @Override
   public int getRoundNum() {
@@ -55,4 +56,12 @@ public class MockAdvancedRobot extends AdvancedRobot {
   public void setAhead(double ahead) {
     this.ahead = ahead;
   }
+
+/*
+  @Override
+  public void setTurnRadarRight( double radarRight){
+    this.radarRight = radarRight;
+  }
+
+ */
 }
