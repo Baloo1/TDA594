@@ -35,8 +35,6 @@ public class ProductLineRobot extends AdvancedRobot implements IEventsTarget, IE
 			targeting = targetingFactory.getLinearTargeting();
 		} else if (ConfigurationManager.getInstance().getProperty("NoneTargeting")) {
 			targeting = targetingFactory.getNoneTargeting();
-		} else if (ConfigurationManager.getInstance().getProperty("HeadOnTargeting")){
-			targeting = targetingFactory.getHeadOnTargeting();
 		}
 
 		else {
