@@ -17,18 +17,14 @@ public class LinearTargeting extends AbstractTargeting {
 	 */
 	@Override
 	public void onScannedRobot(ScannedRobotEvent event) {
-		//DONE
 		final double bulletPower = getBulletPower(robot.getEnergy());
 		final double absoluteBearing = getAbsoluteBearing(robot, event);
 
-		double enemyX = getEnemyX(robot, event, absoluteBearing);
-		double enemyY = getEnemyY(robot, event, absoluteBearing);
+		double predictedX = getEnemyX(robot, event, absoluteBearing);
+		double predictedY = getEnemyY(robot, event, absoluteBearing);
 
 		final double battleFieldHeight = robot.getBattleFieldHeight();
 		final double battleFieldWidth = robot.getBattleFieldWidth();
-
-		double predictedX = enemyX;
-		double predictedY = enemyY;
 
 		double deltaTime = 1;
 		while (deltaTime * (20.0 - 3.0 * bulletPower) < Point2D.Double.distance(robot.getX(), robot.getY(), predictedX, predictedY)) {
@@ -43,7 +39,6 @@ public class LinearTargeting extends AbstractTargeting {
 			deltaTime++;
 		}
 
-		//DONE
 		final double theta = getTheta(predictedX, predictedY);
 
 		robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
@@ -70,6 +65,5 @@ public class LinearTargeting extends AbstractTargeting {
 	public double getTheta(double predictedX, double predictedY) {
 		return Utils.normalAbsoluteAngle(Math.atan2(predictedX - robot.getX(), predictedY - robot.getY()));
 	}
-
 
 }

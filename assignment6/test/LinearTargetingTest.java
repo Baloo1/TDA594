@@ -18,20 +18,31 @@ public class LinearTargetingTest {
 
     @Test
     public void getEnemyYTest(){
-
+        ScannedRobotEvent event = new ScannedRobotEvent("name", 0, 3, 3, 0, 1);
+        MockRobot.setY(7);
+        assertEquals(7, (LinearTargetingTester.getEnemyY(MockRobot, event,Math.PI/2)),0);
+        MockRobot.setY(-7);
+        assertEquals(-7, (LinearTargetingTester.getEnemyY(MockRobot, event,Math.PI/2)),0);
+        MockRobot.setY(1);
+        assertEquals(-2,(Math.round(LinearTargetingTester.getEnemyY(MockRobot, event,Math.PI))),0);
     }
 
     @Test
     public void getEnemyXTest(){
-
+        ScannedRobotEvent event = new ScannedRobotEvent("name", 0, 3, 3, 0, 1);
+        MockRobot.setX(7);
+        assertEquals(10, (LinearTargetingTester.getEnemyX(MockRobot, event,Math.PI/2)),0);
+        MockRobot.setX(-7);
+        assertEquals(-4, (LinearTargetingTester.getEnemyX(MockRobot, event,Math.PI/2)),0);
+        MockRobot.setX(1);
+        assertEquals(1,(Math.round(LinearTargetingTester.getEnemyX(MockRobot, event,Math.PI))),0);
     }
 
     @Test
     public void getAbsoluteBearingTest(){
-        //THIS IS WHERE THE SHIT HAPPENS :D
-        //ScannedRobotEvent event = new ScannedRobotEvent();
-       // LinearTargetingTester.getAbsoluteBearing(LinearTargetingTester, event);
-
+        ScannedRobotEvent event = new ScannedRobotEvent("name", 0, 3, 0, 0, 1);
+        MockRobot.setHeadingRadians(3);
+        assertEquals(6,(LinearTargetingTester.getAbsoluteBearing(MockRobot, event)),0);
     }
 
     @Test
