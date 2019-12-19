@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="RoboCode"/>
+	<feature automatic="selected" name="Movement"/>
+	<feature automatic="unselected" name="WaveSurfing"/>
+	<feature manual="selected" name="RandomFluidOrbit"/>
+	<feature automatic="unselected" name="StopAndGo"/>
+	<feature automatic="unselected" name="NoneMovement"/>
+	<feature automatic="selected" name="Targeting"/>
+	<feature manual="selected" name="GuessFactor"/>
+	<feature automatic="unselected" name="NoneTargeting"/>
+	<feature automatic="unselected" name="Linear"/>
+</configuration>
