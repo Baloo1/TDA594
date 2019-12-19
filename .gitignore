@@ -281,6 +281,8 @@ fabric.properties
 ### FeatureIDE ###
 **/configs/*.xml
 **/*.properties
+!assignment5/configs/default.xml
+!assignment5/*.properties
 
 # End of https://www.gitignore.io/api/intellij
 **/target/
