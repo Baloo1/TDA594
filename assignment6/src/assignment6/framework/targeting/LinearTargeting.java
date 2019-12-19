@@ -27,7 +27,8 @@ public class LinearTargeting extends AbstractTargeting {
 		final double battleFieldWidth = robot.getBattleFieldWidth();
 
 		double deltaTime = 1;
-		while (deltaTime * (20.0 - 3.0 * bulletPower) < Point2D.Double.distance(robot.getX(), robot.getY(), predictedX, predictedY)) {
+
+		while (isTrue(robot, deltaTime, bulletPower, predictedX, predictedY)) {
 			predictedX += Math.sin(event.getHeadingRadians()) * event.getVelocity();
 			predictedY += Math.cos(event.getHeadingRadians()) * event.getVelocity();
 			if (predictedX < 18.0 || predictedY < 18.0 || predictedX > battleFieldWidth - 18.0
@@ -44,6 +45,10 @@ public class LinearTargeting extends AbstractTargeting {
 		robot.setTurnRadarRightRadians(Utils.normalRelativeAngle(absoluteBearing - robot.getRadarHeadingRadians()));
 		robot.setTurnGunRightRadians(Utils.normalRelativeAngle(theta - robot.getGunHeadingRadians()));
 		robot.fire(bulletPower);
+	}
+
+	public boolean isTrue(AdvancedRobot robot, double deltaTime, double bulletPower, double predictedX, double predictedY){
+		return (deltaTime * (20.0 - 3.0 * bulletPower)) < (Point2D.Double.distance(robot.getX(), robot.getY(), predictedX, predictedY));
 	}
 
 	public double getEnemyY(AdvancedRobot robot, ScannedRobotEvent event, double absoluteBearing) {

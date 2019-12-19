@@ -28,6 +28,12 @@ public class LinearTargetingTest {
     }
 
     @Test
+    public void isTrueTest(){
+        assertFalse(LinearTargetingTester.isTrue(MockRobot, 2, 3, 4, 6));
+        assertTrue(LinearTargetingTester.isTrue(MockRobot,0,2,3,5));
+    }
+
+    @Test
     public void getEnemyXTest(){
         ScannedRobotEvent event = new ScannedRobotEvent("name", 0, 3, 3, 0, 1);
         MockRobot.setX(7);
