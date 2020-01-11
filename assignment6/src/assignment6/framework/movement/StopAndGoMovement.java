@@ -5,13 +5,12 @@ import java.awt.geom.*; // for Point2D's
 
 public class StopAndGoMovement extends AbstractMovement {
 
-	/* default */ private static double direction = 1;
-	static double lastEnemyHeading;
-	static double lastEnemyEnergy;
-	boolean flat;
-	static boolean firstScan;
-	static StringBuilder data = new StringBuilder();
-	static double bulletVelocity;
+	/* default */
+	private static double direction = 1;
+	private static double lastEnemyEnergy;
+	private boolean flat;
+	private static StringBuilder data = new StringBuilder();
+	private static double bulletVelocity;
 
 	public StopAndGoMovement(AdvancedRobot robot) {
 		super(robot);
