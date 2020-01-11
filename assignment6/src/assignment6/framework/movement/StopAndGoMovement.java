@@ -7,7 +7,7 @@ public class StopAndGoMovement extends AbstractMovement {
 
 	/* default */
 	private static double direction = 1;
-	private static double lastEnemyEnergy;
+	private static double lastEnemyEnergy = 10;
 	private boolean flat;
 	private static StringBuilder data = new StringBuilder();
 	private static double bulletVelocity;
