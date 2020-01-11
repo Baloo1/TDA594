@@ -51,7 +51,7 @@ public class StopAndGoMovement extends AbstractMovement {
 
 	@Override
 	public void onHitByBullet(HitByBulletEvent event) {
-		lastEnemyEnergy += 20 - (bulletVelocity = event.getVelocity());
+		lastEnemyEnergy += 20;
 	}
 
 	@Override
