@@ -30,7 +30,7 @@ public class StopAndGoMovement extends AbstractMovement {
 
 		/* Wait loop */ while (!field.contains(project(myLocation, v2 = absbearing + direction * (offset -= 0.02), 160)));
 		
-		if ((flat && !rammer && 
+		if ((!flat && !rammer &&
 				Math.random() < 0.6 * Math.sqrt(bulletVelocity / eDistance) - 0.04) 
 			|| offset < Math.PI / 4) {
 			direction = -direction;
