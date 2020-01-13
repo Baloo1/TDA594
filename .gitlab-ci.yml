@@ -1,17 +1,15 @@
-image: maven:latest
-
-before_script:
-    - cd ./assignment5
+image: maven:3-jdk-8
 
 stages:
-    - build
-    - test
+  - build
+  - test
 
 build:
   stage: build
   tags:
     - docker
-
+  before_script:
+    - cd assignment6/
   script:
     - mvn compile
 
@@ -19,5 +17,8 @@ test:
   stage: test
   tags:
     - docker
+  before_script:
+    - cd assignment6/
   script:
     - mvn test
+
